@@ -7,12 +7,12 @@
 # step 5: score(Exp,binding,Opn,weight)
 
 
-input=fileName
-genome=genomeName
-seq=seqEnd
+input=RAd4
+genome=mm9
+seq=pair-end
 # Examples
-#input = Liver     your input file Liver.txt (gene expression data), Liver.bam (chromatin accessibility data), and Liver.bam.bai (bam index file) are under folder./Input
-#genome = hg19  Your refference genome is hg19, software is only available for mm9 and hg19 currently 
+#input = RAd4     your input file Liver.txt (gene expression data), Liver.bam (chromatin accessibility data), and Liver.bam.bai (bam index file) are under folder./Input
+#genome = mm9  Your refference genome is hg19, software is only available for mm9 and hg19 currently 
 #seq = pair-end Your sequnce data is pair-end, we have two options: single-end or pair-end
 
 mkdir ./Results/${input}
