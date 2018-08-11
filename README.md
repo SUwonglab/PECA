@@ -36,3 +36,13 @@ bash install.sh
 
 bash run_PECA.sh
 
+Requirements:
+
+macs2
+bedtools
+homer
+samtools
+Matlab
+
+
+
