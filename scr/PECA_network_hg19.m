@@ -3,7 +3,7 @@ C = textscan(fileID,'%s %s %s  %s');
 fclose(fileID);
 Element_name=C{1,4};
 load('../../Data/MotifMatch_human_rmdup.mat')
-load('../../Data/TFTG_corr_human.mat')
+load('../../Prior/TFTG_corr_human.mat')
 TF_binding=mfbs(TFName,Element_name,motifName,motifWeight,Match2);
 Opn=dlmread('openness.bed','\t',0,1);
 fileID = fopen('../../Input/toreplace.txt');
