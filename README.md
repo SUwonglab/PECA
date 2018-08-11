@@ -8,6 +8,7 @@ Install:
 bash install.sh
 
 Run PECA:
+
 1,edit the three input in run_PECA.sh files, sampleName, genome and single-end/pair-end.
 2,Put the input files in folder named Input. Three files: ${SampleName}.txt, ${SSampleName}.bam, ${SSampleName}.bam.bai
 3,bash run_PECA.sh
