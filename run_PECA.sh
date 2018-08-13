@@ -9,11 +9,9 @@
 
 input=RAd4
 genome=mm9
-seq=pair-end
 # Examples
 #input = RAd4     your input file RAd4.txt (gene expression data), RAd4.bam (chromatin accessibility data), and RAd4.bam.bai (bam index file) are under folder./Input
 #genome = mm9  Your refference genome is mm9, software is only available for mm9 and hg19 currently 
-#seq = pair-end Your sequnce data is pair-end, we have two options: single-end or pair-end
 
 mkdir ./Results/${input}
 cd ./Results/${input}/
@@ -24,12 +22,7 @@ then
 else
 	species=mm
 fi
-if [ $seq == single-end ]
-then
-macs2 callpeak -t ../../Input/${input}.bam -n ${input} -g ${species} --nomodel --shift -100 --extsize 200
-else
-macs2 callpeak -t ../../Input/${input}.bam -f BAMPE -n ${input} -g ${species} --nomodel
-fi
+macs2 callpeak -t ../../Input/${input}.bam -f BAM -n ${input} -g ${species} --nomodel --shift -100 --extsize 200
 bedtools intersect -a ${input}_peaks.narrowPeak -b ../../Data/Promoter_100k_${genome}.bed -wa -u|awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,$1"_"$2"_"$3}'>region.txt
 
 echo step 2: motif binding....
