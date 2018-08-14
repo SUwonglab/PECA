@@ -18,7 +18,7 @@ bash install.sh
 
 3, bash run_PECA.sh
 
-Example: run_PECA.sh
+### Example: run_PECA.sh
 
 The results will be ./Results/${SampleName}/ .
 ${SampleName}_network.txt is the tissue specific network
