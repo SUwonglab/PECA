@@ -6,11 +6,11 @@ Please cite:
 
 Duren, Zhana, et al. "Modeling gene regulation from paired expression and chromatin accessibility data." Proceedings of the National Academy of Sciences 114.25 (2017): E4914-E4923.
 
-Install:
+##Install:
 
 bash install.sh
 
-Run PECA:
+##Run PECA:
 
 1,edit the two input in run_PECA.sh files, sampleName and genome.
 
@@ -24,7 +24,7 @@ The results will be ./Results/${SampleName}/ .
 ${SampleName}_network.txt is the tissue specific network
 TFTG_regulationScore.txt is regulation strength for the all TF to TG. Row name and column name are TFName.txt and TGName.txt
 
-Quickly start:
+##Quickly start:
 
 wget https://github.com/durenzn/PECA/archive/master.zip
 
@@ -36,7 +36,7 @@ bash install.sh
 
 bash run_PECA.sh
 
-Requirements:
+##Requirements:
 
 macs2
 
