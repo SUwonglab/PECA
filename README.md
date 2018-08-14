@@ -38,15 +38,15 @@ bash run_PECA.sh
 
 ## Requirements:
 
-macs2
+* macs2
 
-bedtools
+* bedtools
 
-homer
+* homer
 
-samtools
+* samtools
 
-Matlab
+* Matlab
 
 
 
