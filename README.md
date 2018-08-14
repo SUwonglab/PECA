@@ -10,7 +10,7 @@ Duren, Zhana, et al. "Modeling gene regulation from paired expression and chroma
 
 bash install.sh
 
-##Run PECA:
+## Run PECA:
 
 1,edit the two input in run_PECA.sh files, sampleName and genome.
 
