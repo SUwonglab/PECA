@@ -25,6 +25,15 @@ The results will be ./Results/${SampleName}/ .
 ${SampleName}_network.txt is the tissue specific network
 TFTG_regulationScore.txt is regulation strength for the all TF to TG. Row name and column name are TFName.txt and TGName.txt
 
+## Run PECA_net_dif:
+If you have two samples and want to compare the two samples at network level, please do it by following steps:
+1, Run PECA on two samples one by one by runing PECA
+2, Edit the Sample1 and Sample2 in run_PECA_compare_dif.sh
+3, bash run_PECA_compare_dif.sh
+The results will be ./Results/Compare_${Sample1}_${Sample2}. Containing four files:  
+specific network of two samples: ${Sample1}_specific_network.txt and ${Sample2}_specific_network.txt
+specific module of two networks:  ${Sample1}_specific_module.txt and ${Sample2}_specific_module.txt
+
 ## Quickly start:
 
 wget https://github.com/durenzn/PECA/archive/master.zip
