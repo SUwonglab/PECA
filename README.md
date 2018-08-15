@@ -15,7 +15,7 @@ bash install.sh
 
 1, edit the two input in run_PECA.sh files, sampleName and genome.
 
-2, Put the input files in folder named ./Input. Three files: ${SampleName}.txt, ${SSampleName}.bam, ${SSampleName}.bam.bai
+2, Put the input files in folder named ./Input. Three files: ${SampleName}.txt, ${SampleName}.bam, ${SampleName}.bam.bai
 
 3, bash run_PECA.sh
 
