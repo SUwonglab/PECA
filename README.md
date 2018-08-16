@@ -21,7 +21,9 @@ ${SampleName}.txt is gene expression file containing two columns (tab delimited)
 
 ${SampleName}.bam is chromatin accessibility data, DNase-seq or ATAC-seq. 
 
-${SampleName}.bam.bai is the index file of bam file. Please see the example of RAd4 in the ./Input directory.
+${SampleName}.bam.bai is the index file of bam file. 
+
+Please see the example of RAd4 in the ./Input directory.
 
 3, bash run_PECA.sh
 
