@@ -13,9 +13,9 @@ bash install.sh
 
 ## Run PECA:
 
-1, edit the two input in run_PECA.sh files, sampleName and genome.
+1, edit the two input in run_PECA.sh files, sampleName and genome (line 10 and 11 in run_PECA.sh).
 
-2, Put the input files in folder named ./Input. Three files: ${SampleName}.txt, ${SampleName}.bam, ${SampleName}.bam.bai
+2, Put the input files in folder named ./Input. Three files: ${SampleName}.txt, ${SampleName}.bam, ${SampleName}.bam.bai. ${SampleName}.txt is gene expression file containing two columns (tab delimited), gene Symbol and FPKM (or TPM). ${SampleName}.bam is chromatin accessibility data, DNase-seq or ATAC-seq. ${SampleName}.bam.bai is the index file of bam file. Please see the example of RAd4 in the ./Input directory.
 
 3, bash run_PECA.sh
 
@@ -30,7 +30,7 @@ If you have two samples and want to compare the two samples at network level, pl
 
 1, Run PECA on two samples one by one by runing PECA
 
-2, Edit the Sample1 and Sample2 in run_PECA_compare_dif.sh
+2, Edit the Sample1 and Sample2 in run_PECA_compare_dif.sh (line 3 and 4 in un_PECA_compare_dif.sh)
 
 3, bash run_PECA_compare_dif.sh
 
