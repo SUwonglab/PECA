@@ -37,6 +37,7 @@ H1=sparse(f2(:,2),f2(:,1),c,length(geneName),length(Element_name));
 TFO=TF_binding.*Opn';
 BOH=TFO*H1';
 Score=sqrt(TFExp*G').*(2.^abs(R2)).*full(BOH);
+Score(isnan(Score))=0;
 dlmwrite('TFTG_regulationScore.txt',Score,'\t')
 filename='TFName.txt';
  fid=fopen(filename,'wt');
@@ -58,9 +59,14 @@ load('../../Data/TFTG_mouse_nagetriveControl.mat')
 [d1 f1]=ismember(Back_net(:,2),geneName);
 f2=[f(d.*d1==1) f1(d.*d1==1)];
 Back_score=Score((f2(:,2)-1)*size(Score,1)+f2(:,1));
-Cut=prctile(Back_score,99.9);
-[a b]=find(Score>Cut);
-c=find(Score>Cut);
+Cut=prctile(Back_score,95);
+a1=sum(Score);
+a2=sum(Score,2);
+Score_norm=sum(a1)*(repmat(1./a2,1,size(Score,2)).*Score.*repmat(1./a1,size(Score,1),1));
+Back_score_norm=Score_norm((f2(:,2)-1)*size(Score,1)+f2(:,1));
+Cut_norm=prctile(Back_score_norm,95);
+[a b]=find((Score>Cut).*(Score_norm>Cut_norm)==1);
+c=find((Score>Cut).*(Score_norm>Cut_norm)==1);
 c1=full(Score(c));
 Net=[TFName(a) List(b)];
 TFTG_RE=arrayfun(@(i)  strjoin(Element_name(find((TFO(a(i),:)>0).*(H1(b(i),:)>0)==1))',';'),[1:length(a)]','UniformOutput',false);
