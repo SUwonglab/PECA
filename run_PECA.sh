@@ -23,7 +23,7 @@ else
 	species=mm
 fi
 macs2 callpeak -t ../../Input/${input}.bam -f BAM -n ${input} -g ${species} --nomodel --shift -100 --extsize 200
-bedtools intersect -a ${input}_peaks.narrowPeak -b ../../Data/Promoter_100k_${genome}.bed -wa -u|awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,$1"_"$2"_"$3}'>region.txt
+cat ${input}_peaks.narrowPeak|awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,$1"_"$2"_"$3}'>region.txt
 
 echo step 2: motif binding....
 findMotifsGenome.pl region.txt ${genome} ./. -size given -find ../../Data/all_motif_rmdup > MotifTarget.bed
@@ -45,9 +45,8 @@ rm back*
 rm read.bed
 
 echo step 4: Prior....
-bedtools intersect -a ../../Data/Promoter_100k_${genome}.bed  -b region.bed -wa -wb -sorted|awk 'BEGIN{OFS="\t"}{print $5,$6,$7,$4,$3-100000-$6}'|sed 's/-//g'|sort -k1,1 -k2,2n >peak_gene_100k.bed
-bedtools intersect -a peak_gene_100k.bed -b ../../Prior/RE_gene_corr_${genome}.bed -wa -wb -sorted|awk 'BEGIN{OFS="\t"}{if ($4==$9) print $1,$2,$3,$4,$5,$10}'|sed 's/\t/\_/1'|sed 's/\t/\_/1'>peak_gene_100k_corr.bed
-rm peak_gene_100k.bed
+bedtools intersect -a region.bed -b ../../Prior/RE_gene_corr_${genome}.bed -wa -wb -sorted|cut -f 1-3,7-9|sed 's/\t/\_/1'|sed 's/\t/\_/1'>peak_gene_100k_corr.bed
+bedtools intersect -a region.bed -b ../../Prior/Enhancer_RE_gene_corr_${genome}.bed -wa -wb -sorted|cut -f 1-3,7-9|sed 's/\t/\_/1'|sed 's/\t/\_/1'>>peak_gene_100k_corr.bed
 
 echo step 5: Network....
 cp ../../scr/mfbs.m ./.
