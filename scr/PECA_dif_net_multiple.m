@@ -77,7 +77,19 @@ Net2_specific=[Net2_specific(f,:) num2cell(d)];
 d1=ismember(Net2_specific(:,1),Node1(XNext>prctile(XNext,95)));
 d1(:,2)=ismember(Net2_specific(:,2),[Node1(XNext>prctile(XNext,95));Node2(YNext>prctile(YNext,95))]);
 Net2_specific_module=Net2_specific(d1(:,1).*d1(:,2)>0,:);
-%%%%write
+%%%%%%%%%%%%%%%%common
+Net3=sqrt(Net1_mean/max(max(Net1_mean)).*Net2_mean/max(max(Net2_mean)));
+D1=Net3>max(prctile(Net3(Net3>0),95),0.01);
+[a b]=find(D1>0);
+c=Net3(D1>0);
+Net_common=[Node1(a) Node2(b)];
+[d f]=sort(c,'descend');
+Net_common=[Net_common(f,:) num2cell(d)];
+[XNext, YNext,Obj]= FindSubNetwork_bi1(1,Net3);
+d1=ismember(Net_common(:,1),Node1(XNext>prctile(XNext,95)));
+d1(:,2)=ismember(Net_common(:,2),[Node1(XNext>prctile(XNext,95));Node2(YNext>prctile(YNext,95))]);
+Net_common_module=Net_common(d1(:,1).*d1(:,2)>0,:);
+%%%%%%%%%%%%%%%%write
 filename='Sample1_specific_network.txt';
 fid=fopen(filename,'wt');
 	fprintf(fid, '%s\t','TF');
@@ -152,5 +164,31 @@ for i=1:size(Net2_specific_module,1)
 	fprintf(fid, '%g\t',Net2_specific_module{i,5});
 	fprintf(fid, '%g\n',Net2_specific_module{i,6});
 %	fprintf(fid, '%s\n',Net2_specific_module{i,7});
+end
+fclose(fid);
+filename='Sample1_Sample2_common_network.txt';
+fid=fopen(filename,'wt');
+	fprintf(fid, '%s\t','TF');
+	fprintf(fid, '%s\t','TG');
+	fprintf(fid, '%s\n','Activity');
+%	fprintf(fid, '%s\n','REs');
+for i=1:size(Net_common,1)
+	fprintf(fid, '%s\t',Net_common{i,1});
+	fprintf(fid, '%s\t',Net_common{i,2});
+	fprintf(fid, '%g\n',Net_common{i,3});
+%	fprintf(fid, '%s\n',Net_common{i,4});
+end
+fclose(fid);
+filename='Sample1_Sample2_common_module.txt';
+fid=fopen(filename,'wt');
+	fprintf(fid, '%s\t','TF');
+	fprintf(fid, '%s\t','TG');
+	fprintf(fid, '%s\n','Activity');
+%	fprintf(fid, '%s\n','REs');
+for i=1:size(Net_common_module,1)
+	fprintf(fid, '%s\t',Net_common_module{i,1});
+	fprintf(fid, '%s\t',Net_common_module{i,2});
+	fprintf(fid, '%g\n',Net_common_module{i,3});
+%	fprintf(fid, '%s\n',Net_common_module{i,4});
 end
 fclose(fid);
