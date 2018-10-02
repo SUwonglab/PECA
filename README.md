@@ -51,7 +51,7 @@ If you have two samples and want to compare the two samples at network level, pl
 
 1, Run PECA on two samples one by one by runing PECA
 
-2, Edit the Sample1 and Sample2 in run_PECA_compare_dif.sh (line 3 and 4 in un_PECA_compare_dif.sh)
+2, Edit the Sample1 and Sample2 in run_PECA_compare_dif.sh (line 3 and 4 in run_PECA_compare_dif.sh)
 
 3, bash run_PECA_compare_dif.sh
 
@@ -62,19 +62,21 @@ specific network of two samples: ${Sample1}_specific_network.txt and ${Sample2}_
 specific module of two networks:  ${Sample1}_specific_module.txt and ${Sample2}_specific_module.txt
 
 ## Run PECA_net_dif_multiple:
-If you have two samples and want to compare the two samples at network level, please do it by following steps:
+If you have two conditions (multiple samples in each conditions) and want to compare the two conditions at network level, please do it by following steps:
 
-1, Run PECA on two samples one by one by runing PECA
+1, Run PECA on all the samples from two conditions one by one by runing PECA
 
-2, Edit the Sample1 and Sample2 in run_PECA_compare_dif.sh (line 3 and 4 in un_PECA_compare_dif.sh)
+2, Write the sample names of Group1 into one file named $Group1, and the same in $Group2 (i.e. creat one file named "Control" and put the sample names of first condition to this file, creat one file named "Case" and put the sample names of second condition to this file)
 
-3, bash run_PECA_compare_dif.sh
+3, Edit the Group1 and Group2 in run_PECA_compare_dif_multiple.sh (line 3 and 4 in run_PECA_compare_dif_multiple.sh, i.e. Group1=Control; Group2=Case )
 
-The results will be ./Results/Compare_${Sample1}_${Sample2}. Containing four files:  
+3, bash run_PECA_compare_dif_multiple.sh
 
-specific network of two samples: ${Sample1}_specific_network.txt and ${Sample2}_specific_network.txt
+The results will be ./Results/CompareGroup_${Group1}_${Group2}. Containing four files:  
 
-specific module of two networks:  ${Sample1}_specific_module.txt and ${Sample2}_specific_module.txt
+specific network of two samples: ${Group1}_specific_network.txt and ${Group2}_specific_network.txt
+
+specific module of two networks:  ${Group1}_specific_module.txt and ${Group2}_specific_module.txt
 
 
 ## Requirements:
