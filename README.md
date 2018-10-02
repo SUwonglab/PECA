@@ -7,6 +7,18 @@ Please cite:
 
 Duren, Zhana, et al. "Modeling gene regulation from paired expression and chromatin accessibility data." Proceedings of the National Academy of Sciences 114.25 (2017): E4914-E4923.
 
+## Quickly start:
+
+wget https://github.com/durenzn/PECA/archive/master.zip
+
+unzip master.zip
+
+cd PECA-master/
+
+bash install.sh
+
+bash run_PECA.sh
+
 ## Install:
 
 bash install.sh
@@ -49,17 +61,21 @@ specific network of two samples: ${Sample1}_specific_network.txt and ${Sample2}_
 
 specific module of two networks:  ${Sample1}_specific_module.txt and ${Sample2}_specific_module.txt
 
-## Quickly start:
+## Run PECA_net_dif_multiple:
+If you have two samples and want to compare the two samples at network level, please do it by following steps:
 
-wget https://github.com/durenzn/PECA/archive/master.zip
+1, Run PECA on two samples one by one by runing PECA
 
-unzip master.zip
+2, Edit the Sample1 and Sample2 in run_PECA_compare_dif.sh (line 3 and 4 in un_PECA_compare_dif.sh)
 
-cd PECA-master/
+3, bash run_PECA_compare_dif.sh
 
-bash install.sh
+The results will be ./Results/Compare_${Sample1}_${Sample2}. Containing four files:  
 
-bash run_PECA.sh
+specific network of two samples: ${Sample1}_specific_network.txt and ${Sample2}_specific_network.txt
+
+specific module of two networks:  ${Sample1}_specific_module.txt and ${Sample2}_specific_module.txt
+
 
 ## Requirements:
 
