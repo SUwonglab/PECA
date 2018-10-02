@@ -55,11 +55,15 @@ If you have two samples and want to compare the two samples at network level, pl
 
 3, bash run_PECA_compare_dif.sh
 
-The results will be ./Results/Compare_${Sample1}_${Sample2}. Containing four files:  
+The results will be ./Results/Compare_${Sample1}_${Sample2}. Containing six files:  
 
 specific network of two samples: ${Sample1}_specific_network.txt and ${Sample2}_specific_network.txt
 
+common network of two samples: ${Sample1}_${Sample2}_common_network.txt 
+
 specific module of two networks:  ${Sample1}_specific_module.txt and ${Sample2}_specific_module.txt
+
+common module of two samples: ${Sample1}_${Sample2}_common_module.txt 
 
 ## Run PECA_net_dif_multiple:
 If you have two conditions (multiple samples in each conditions) and want to compare the two conditions at network level, please do it by following steps:
@@ -72,12 +76,15 @@ If you have two conditions (multiple samples in each conditions) and want to com
 
 3, bash run_PECA_compare_dif_multiple.sh
 
-The results will be ./Results/CompareGroup_${Group1}_${Group2}. Containing four files:  
+The results will be ./Results/CompareGroup_${Group1}_${Group2}. Containing six files:  
 
 specific network of two samples: ${Group1}_specific_network.txt and ${Group2}_specific_network.txt
 
+common network of two samples: ${Group1}_${Group2}_common_network.txt 
+
 specific module of two networks:  ${Group1}_specific_module.txt and ${Group2}_specific_module.txt
 
+common module of two samples: ${Group1}_${Group2}_common_module.txt
 
 ## Requirements:
 
