@@ -78,13 +78,13 @@ If you have two conditions (multiple samples in each conditions) and want to com
 
 The results will be ./Results/CompareGroup_${Group1}_${Group2}. Containing six files:  
 
-specific network of two samples: ${Group1}_specific_network.txt and ${Group2}_specific_network.txt
+specific network of two conditions: ${Group1}_specific_network.txt and ${Group2}_specific_network.txt
 
-common network of two samples: ${Group1}_${Group2}_common_network.txt 
+common network of two conditions: ${Group1}_${Group2}_common_network.txt 
 
-specific module of two networks:  ${Group1}_specific_module.txt and ${Group2}_specific_module.txt
+specific module of two conditions:  ${Group1}_specific_module.txt and ${Group2}_specific_module.txt
 
-common module of two samples: ${Group1}_${Group2}_common_module.txt
+common module of two conditions: ${Group1}_${Group2}_common_module.txt
 
 ## Requirements:
 
