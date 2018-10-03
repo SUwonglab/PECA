@@ -88,15 +88,15 @@ common module of two conditions: ${Group1}_${Group2}_common_module.txt
 
 ## Requirements:
 
-* macs2
+* Matlab
 
-* bedtools
+* macs2
 
 * homer
 
 * samtools
 
-* Matlab
+* bedtools
 
 
 
