@@ -68,11 +68,11 @@ common module of two samples: ${Sample1}_${Sample2}_common_module.txt
 ## Run PECA_net_dif_multiple:
 If you have two conditions (multiple samples in each conditions) and want to compare the two conditions at network level, please do it by following steps:
 
-1, Run PECA on all the samples from two conditions one by one by runing PECA
+1, Run PECA on all the samples from two conditions one by one by "bash run_PECA.sh"
 
-2, Write the sample names of Group1 into one file named $Group1, and the same in $Group2 (i.e. create one file named "Control" and put the sample names of first condition to this file, create one file named "Case" and put the sample names of second condition to this file)
+2, Write the sample names of Group1 into one file named $Group1, and the same in $Group2 (eg. create one file named "Control" and put the sample names of first condition to this file, create one file named "Case" and put the sample names of second condition to this file)
 
-3, Edit the Group1 and Group2 in run_PECA_compare_dif_multiple.sh (line 3 and 4 in run_PECA_compare_dif_multiple.sh, i.e. Group1=Control; Group2=Case )
+3, Edit the Group1 and Group2 in run_PECA_compare_dif_multiple.sh (line 3 and 4 in run_PECA_compare_dif_multiple.sh, eg. Group1=Control; Group2=Case )
 
 4, bash run_PECA_compare_dif_multiple.sh
 
