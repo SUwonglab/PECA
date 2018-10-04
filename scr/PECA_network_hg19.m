@@ -62,6 +62,7 @@ Back_score=Score((f2(:,2)-1)*size(Score,1)+f2(:,1));
 Cut=prctile(Back_score,99);
 [a b]=find((Score>Cut)==1);
 c=find((Score>Cut)==1);
+c1=full(Score(c));
 Net=[TFName(a) List(b)];
 [a1 a2]=maxk(H1',10);
 TFTG_RE=arrayfun(@(i)  strjoin(Element_name(a2((TFO(a(i),a2(:,b(i)))>0)'.*(a1(:,b(i))>0)==1,b(i)))',';'),[1:length(a)]','UniformOutput',false);
