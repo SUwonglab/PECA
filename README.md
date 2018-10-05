@@ -70,7 +70,7 @@ If you have two conditions (multiple samples in each conditions) and want to com
 
 1, Run PECA on all the samples from two conditions one by one by "bash run_PECA.sh"
 
-2, Write the sample names of Group1 and Group2 into files named $Group1 and $Group2, respectively. (eg. create one file named "Control" and put the sample names of one condition to this file, create other file named "Case" and put the names of the other condition to this file. Note that the sample name files contain one sample name per line )
+2, Write the sample names of Group1 and Group2 into text files named $Group1 and $Group2, respectively. (eg. create one text file named "Control" and put the sample names of one condition to this file, create other text file named "Case" and put the names of the other condition to this file. Note that the sample name files contain one sample name per line )
 
 3, Edit the Group1 and Group2 in run_PECA_compare_dif_multiple.sh (line 3 and 4 in run_PECA_compare_dif_multiple.sh, eg. Group1=Control; Group2=Case )
 
