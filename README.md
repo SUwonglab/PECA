@@ -9,7 +9,7 @@ Duren, Zhana, et al. "Modeling gene regulation from paired expression and chroma
 
 ## Quickly start:
 
-wget https://github.com/durenzn/PECA/archive/master.zip
+wget https://github.com/SUwonglab/PECA/archive/master.zip
 
 unzip master.zip
 
