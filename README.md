@@ -49,9 +49,9 @@ TFTG_regulationScore.txt is regulation strength for the all TF to TG. Row name a
 ## Run PECA_net_dif:
 If you have two samples and want to compare the two samples at network level, please do it by following steps:
 
-1, Run PECA on two samples one by one by runing PECA
+1, Run PECA on two samples one by one by "Run PECA"
 
-2, Edit the Sample1 and Sample2 in run_PECA_compare_dif.sh (line 3 and 4 in run_PECA_compare_dif.sh)
+2, Edit the Sample1, Sample2 and organism in run_PECA_compare_dif.sh (line 3,4 and 5 in run_PECA_compare_dif.sh). 
 
 3, bash run_PECA_compare_dif.sh
 
@@ -65,14 +65,16 @@ specific module of two networks:  ${Sample1}_specific_module.txt and ${Sample2}_
 
 common module of two samples: ${Sample1}_${Sample2}_common_module.txt 
 
+Files PooledNetwork.txt or PooledModuole.txt can be used to visilize the network by cytoscype, and the node lable is given in file Node_lable.txt. "1" and "-1" in PooledNetwork.txt or PooledModuole.txt represent "Activation" and "Repression" respectively. "1" and "2" in Node_lable.txt represent the gene is Sample1 specific or Sample2 specific.
+
 ## Run PECA_net_dif_multiple:
 If you have two conditions (multiple samples in each conditions) and want to compare the two conditions at network level, please do it by following steps:
 
-1, Run PECA on all the samples from two conditions one by one by "bash run_PECA.sh"
+1, Run PECA on all the samples from two conditions one by one by "Run PECA"
 
 2, Write the sample names of Group1 and Group2 into text files named $Group1 and $Group2, respectively. (eg. create one text file named "Control" and put the sample names of one condition to this file, create other text file named "Case" and put the names of the other condition to this file. Note that the sample name files contain one sample name per line )
 
-3, Edit the Group1 and Group2 in run_PECA_compare_dif_multiple.sh (line 3 and 4 in run_PECA_compare_dif_multiple.sh, eg. Group1=Control; Group2=Case )
+3, Edit the Group1, Group2 and organism in run_PECA_compare_dif_multiple.sh (line 3, 4 and 5 in run_PECA_compare_dif_multiple.sh, eg. Group1=Control; Group2=Case ; organism=human )
 
 4, bash run_PECA_compare_dif_multiple.sh
 
@@ -85,6 +87,8 @@ common network of two conditions: ${Group1}_${Group2}_common_network.txt
 specific module of two conditions:  ${Group1}_specific_module.txt and ${Group2}_specific_module.txt
 
 common module of two conditions: ${Group1}_${Group2}_common_module.txt
+
+Files PooledNetwork.txt or PooledModuole.txt can be used to visilize the network by cytoscype, and the node lable is given in file Node_lable.txt. "1" and "-1" in PooledNetwork.txt or PooledModuole.txt represent "Activation" and "Repression" respectively. "1" and "2" in Node_lable.txt represent the gene is Group1 specific or Group2 specific.
 
 ## Requirements:
 
