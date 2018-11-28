@@ -11,6 +11,30 @@ C = textscan(fileID,'%s %f32');
 fclose(fileID);
 Symbol=C{1,1};
 G=C{1,2};
+%%%%CR binding
+load('../../Data/CRInfo_mouse.mat')
+eita0=-30.4395;
+eita1=0.8759;
+[d f]=ismember(C_TFName,TFName);
+C_TFName=C_TFName(d==1,:);
+TFS=TFS(d==1,:);
+CR_TF=CR_TF(:,d==1);
+TFB=full(TF_binding(f(d==1),:));
+C_TFExp=zeros(length(C_TFName),1);
+[d f]=ismember(C_TFName,Symbol);
+C_TFExp(d==1,:)=log2(1+G(f(d==1),:));
+TFBO=(repmat(C_TFExp,1,length(Opn)).*repmat(C_TFExp./TFS,1,length(Opn)).*TF_binding.*repmat(Opn',length(TFName),1)).^0.25;
+CRB=eita0+eita1*CR_TF*TFBO;
+CRB_P=1-exp(CRB')./(1+exp(CRB'));
+filename='CR_binding_pval.txt';
+ fid=fopen(filename,'wt');
+for i=1:length(CRName)-1
+         fprintf(fid, '%s\t',CRName{i,1});
+end
+fprintf(fid, '%s\n',CRName{i+1,1});
+ fclose(fid);
+dlmwrite('CR_binding_pval.txt',CRB_P,'-append','delimiter','\t')
+%%%%%%%%%%%%
 geneName=intersect(List,Symbol);
 [d f]=ismember(geneName,List);
 R2=R2(:,f);
