@@ -53,4 +53,10 @@ cp ../../scr/mfbs.m ./.
 sed "s/toreplace/${input}/g" ../../scr/PECA_network_${genome}.m > PECA_network.m
 module load matlab
 matlab -nodisplay -nosplash -nodesktop -r "PECA_network; exit"
+echo region > CRbinding_region
+cat region.txt|cut -f 4 > CRbinding_region1
+cat CRbinding_region CRbinding_region1> CRbinding_region2
+paste -d '\t' CRbinding_region2 CR_binding_pval.txt > CRB_pval.txt
+rm CRbinding_region*
+rm CR_binding_pval.txt
 echo ${input} PECA done
