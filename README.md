@@ -46,7 +46,7 @@ ${SampleName}_network.txt is the tissue specific network.
 
 TFTG_regulationScore.txt is regulation strength for the all TF to TG. Row name and column name are TFName.txt and TGName.txt
 
-CRB_pval.txt is the Chromatin regulators (CR) binding site matrix, each column represent one CR, each row represent one region, the values are p-values.
+CRB_pval.txt is the Chromatin regulators' (CR) binding site matrix, each column represent one CR, each row represent one region, the values are p-values.
 
 ## Run PECA_net_dif:
 If you have two samples and want to compare the two samples at network level, please do it by following steps:
