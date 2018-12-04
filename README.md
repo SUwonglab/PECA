@@ -25,9 +25,7 @@ bash install.sh
 
 ## Run PECA:
 
-1, edit the two input in run_PECA.sh files, sampleName and genome (line 10 and 11 in run_PECA.sh).
-
-2, Put the input files in folder named ./Input. Three files: ${SampleName}.txt, ${SampleName}.bam, ${SampleName}.bam.bai.
+1, Put the input files in folder named ./Input. Three files: ${SampleName}.txt, ${SampleName}.bam, ${SampleName}.bam.bai.
 
 ${SampleName}.txt is gene expression file containing two columns (tab delimited), gene Symbol and FPKM (or TPM). 
 
@@ -35,11 +33,11 @@ ${SampleName}.bam is chromatin accessibility data, DNase-seq or ATAC-seq.
 
 ${SampleName}.bam.bai is the index file of bam file. 
 
-Please see the example of RAd4 in the ./Input directory.
+Note that all the three files should have same before-dot-file-name ${SampleName},only difference is after dot ".txt", ".bam" or ".bam.bai". Please see the example of RAd4 in the ./Input directory.
 
-3, bash run_PECA.sh
+2, sh run_PECA.sh ${sampleName} genome
 
-Example: run_PECA.sh
+Example: sh run_PECA.sh RAd4 mm9
 
 The results will be ./Results/${SampleName}/ .
 ${SampleName}_network.txt is the tissue specific network.
