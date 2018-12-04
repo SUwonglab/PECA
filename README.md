@@ -91,7 +91,7 @@ specific module of two conditions:  ${Group1}_specific_module.txt and ${Group2}_
 
 common module of two conditions: ${Group1}_${Group2}_common_module.txt
 
-Files PooledNetwork.txt or PooledModuole.txt can be used to visilize the network by cytoscype, and the node lable is given in file Node_lable.txt. "1" and "-1" in PooledNetwork.txt or PooledModuole.txt represent "Activation" and "Repression" respectively. "1" and "2" in Node_lable.txt represent the gene is Group1 specific or Group2 specific.
+Files PooledNetwork.txt or PooledModuole.txt can be used to visualize the network by cytoscype, and the node lable is given in file Node_lable.txt. "1" and "-1" in PooledNetwork.txt or PooledModuole.txt represent "Activation" and "Repression" respectively. "1" and "2" in Node_lable.txt represent the gene is Group1 specific or Group2 specific.
 
 ## Requirements:
 
