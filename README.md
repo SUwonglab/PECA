@@ -27,7 +27,8 @@ bash install.sh
 
 Run PECA by following two steps:
 
-1, ## Input:Put the input files in folder named ./Input. Three files: ${SampleName}.txt, ${SampleName}.bam, ${SampleName}.bam.bai.
+# Step 1: Input 
+Put the input files in folder named ./Input. Three files: ${SampleName}.txt, ${SampleName}.bam, ${SampleName}.bam.bai.
 
 ${SampleName}.txt is gene expression file containing two columns (tab delimited), gene Symbol and FPKM (or TPM). 
 
@@ -37,7 +38,8 @@ ${SampleName}.bam.bai is the index file of bam file.
 
 Note that all the three files should have same before-dot-file-name ${SampleName},only difference is after dot ".txt", ".bam" or ".bam.bai". Please see the example of RAd4 in the ./Input directory.
 
-2, ## Run: sh PECA.sh ${sampleName} genome
+# Step 2: Run 
+sh PECA.sh ${sampleName} genome
 
 Example: sh PECA.sh RAd4 mm9
 
