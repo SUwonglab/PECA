@@ -53,7 +53,7 @@ CRB_pval.txt is the Chromatin regulators' (CR) binding site matrix, each column 
 ## Run PECA_net_dif:
 If you have two samples and want to compare the two samples at network level, please do it by following steps:
 
-1, Prepare two network: Run PECA on two samples one by one by "sh PECA.sh ${sampleName} ${genome}"
+1, Prepare two networks: Run PECA on two samples one by one by "sh PECA.sh ${sampleName} ${genome}"
 
 2, Run:  sh PECA_compare_dif.sh ${Sample1} ${Sample2} ${Organism}
 
