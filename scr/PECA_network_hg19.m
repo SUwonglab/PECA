@@ -99,11 +99,13 @@ fid=fopen(filename,'wt');
 	fprintf(fid, '%s\t','TF');
 	fprintf(fid, '%s\t','TG');
 	fprintf(fid, '%s\t','Score');
+	fprintf(fid, '%s\t','FDR');
 	fprintf(fid, '%s\n','REs');
 for i=1:size(Net,1)
 	fprintf(fid, '%s\t',Net{i,1});
 	fprintf(fid, '%s\t',Net{i,2});
 	fprintf(fid, '%g\t',Net{i,3});
+	fprintf(fid, '%g\t',(sum(Back_score>d(i))+1)/length(Back_score));
 	fprintf(fid, '%s\n',Net{i,4});
 end
 fclose(fid);
