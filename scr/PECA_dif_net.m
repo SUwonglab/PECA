@@ -121,13 +121,13 @@ Net_common=Net_common(abs(cell2mat(Net_common(:,3)))>0.1,:);
 d1=ismember(Net_common(:,1:2),[Node1(XNext>prctile(XNext,95));Node2(YNext>prctile(YNext,95))]);
 Net_common_module=Net_common(d1(:,1).*d1(:,2)>0,:);
 %%%%%%%%%%%%%write
-Node_lable=1*(ExpPool2(:,1)>ExpPool2(:,2));
-Node_lable(Node_lable==0)=2;
-filename='Node_lable.txt';
+Node_label=1*(ExpPool2(:,1)>ExpPool2(:,2));
+Node_label(Node_label==0)=2;
+filename='Node_label.txt';
 fid=fopen(filename,'wt');
 for i=1:size(Node2,1)
 	fprintf(fid, '%s\t',Node2{i,1});
-	fprintf(fid, '%g\n',Node_lable(i,1));
+	fprintf(fid, '%g\n',Node_label(i,1));
 end
 fclose(fid);
 
