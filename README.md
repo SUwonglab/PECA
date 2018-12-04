@@ -35,9 +35,9 @@ ${SampleName}.bam.bai is the index file of bam file.
 
 Note that all the three files should have same before-dot-file-name ${SampleName},only difference is after dot ".txt", ".bam" or ".bam.bai". Please see the example of RAd4 in the ./Input directory.
 
-2, sh run_PECA.sh ${sampleName} genome
+2, sh PECA.sh ${sampleName} genome
 
-Example: sh run_PECA.sh RAd4 mm9
+Example: sh PECA.sh RAd4 mm9
 
 The results will be ./Results/${SampleName}/ .
 ${SampleName}_network.txt is the tissue specific network.
