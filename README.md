@@ -25,6 +25,8 @@ bash install.sh
 
 ## Run PECA:
 
+Run PECA by following two steps:
+
 1, Put the input files in folder named ./Input. Three files: ${SampleName}.txt, ${SampleName}.bam, ${SampleName}.bam.bai.
 
 ${SampleName}.txt is gene expression file containing two columns (tab delimited), gene Symbol and FPKM (or TPM). 
