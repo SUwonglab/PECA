@@ -26,7 +26,7 @@ macs2 callpeak -t ../../Input/${input}.bam -f BAM -n ${input} -g ${species} --no
 cat ${input}_peaks.narrowPeak|awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,$1"_"$2"_"$3}'>region.txt
 
 echo step 2: motif binding....
-findMotifsGenome.pl region.txt ${genome} ./. -size given -find ../../Data/all_motif_rmdup > MotifTarget.bed
+findMotifsGenome.pl region.txt ${genome} ./. -size given -find ../../Data/all_motif_rmdup -preparsedDir ../../Homer/ > MotifTarget.bed
 cat MotifTarget.bed|awk 'NR>1'|cut -f 1,4,6 > MotifTarget.txt
 rm MotifTarget.bed
 rm motifFindingParameters.txt
