@@ -1,8 +1,8 @@
 #/bin/bash
 
-Group1=stem1
-Group2=stem2
-organism=human
+Group1=$1
+Group2=$2
+organism=$3
 # Examples
 # Group1=Control
 # Group2=Patients
