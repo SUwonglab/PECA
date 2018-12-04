@@ -6,9 +6,9 @@
 # step 4: corr+dist
 # step 5: score(Exp,binding,Opn,weight)
 
+input=$1
+genome=$2
 
-input=RAd4
-genome=mm9
 # Examples
 #input = RAd4     your input file RAd4.txt (gene expression data), RAd4.bam (chromatin accessibility data), and RAd4.bam.bai (bam index file) are under folder./Input
 #genome = mm9  Your refference genome is mm9, software is only available for mm9, mm10, hg19 and hg38 currently 
