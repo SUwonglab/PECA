@@ -46,7 +46,7 @@ Example: sh PECA.sh RAd4 mm9
 The results will be ./Results/${SampleName}/ .
 ${SampleName}_network.txt is the tissue specific network.
 
-TFTG_regulationScore.txt is regulation strength for the all TF to TG. Row name and column name are TFName.txt and TGName.txt
+TFTG_score.txt is regulation strength for the all TF to TG. Each row represent one TF and each column represents one target gene. Higher value represents higher possibility of regulation.
 
 CRB_pval.txt is the Chromatin regulators' (CR) binding site matrix, each column represent one CR, each row represent one region, the values are p-values.
 
