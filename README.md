@@ -55,9 +55,9 @@ If you have two samples and want to compare the two samples at network level, pl
 
 1, Run PECA on two samples one by one by "sh PECA.sh ${sampleName} ${genome}"
 
-2, sh PECA_compare_dif.sh ${Sample1} ${Sample2}
+2, sh PECA_compare_dif.sh ${Sample1} ${Sample2} ${Organism}
 
-Example: sh PECA_compare_dif.sh K562 GM12878
+Example: sh PECA_compare_dif.sh K562 GM12878 human ; sh PECA_compare_dif.sh mESC RAd4 mouse
 
 The results will be ./Results/Compare_${Sample1}_${Sample2}. Containing six files:  
 
