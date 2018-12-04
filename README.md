@@ -53,9 +53,9 @@ CRB_pval.txt is the Chromatin regulators' (CR) binding site matrix, each column 
 ## Run PECA_net_dif:
 If you have two samples and want to compare the two samples at network level, please do it by following steps:
 
-1, Run PECA on two samples one by one by "sh PECA.sh ${sampleName} ${genome}"
+1, Prepare two network: Run PECA on two samples one by one by "sh PECA.sh ${sampleName} ${genome}"
 
-2, sh PECA_compare_dif.sh ${Sample1} ${Sample2} ${Organism}
+2, Run:  sh PECA_compare_dif.sh ${Sample1} ${Sample2} ${Organism}
 
 Example: sh PECA_compare_dif.sh K562 GM12878 human ; sh PECA_compare_dif.sh mESC RAd4 mouse
 
@@ -74,14 +74,15 @@ Files PooledNetwork.txt or PooledModuole.txt can be used to visilize the network
 ## Run PECA_net_dif_multiple:
 If you have two conditions (multiple samples in each conditions) and want to compare the two conditions at network level, please do it by following steps:
 
-1, Run PECA on all the samples from two conditions one by one by "Run PECA"
+1, Prepare networks: Run PECA on all the samples from two conditions one by one by "sh PECA.sh ${sampleName} ${genome}"
 
-2, Write the sample names of Group1 and Group2 into text files named $Group1 and $Group2, respectively. (eg. create one text file named "Control" and put the sample names of one condition to this file, create other text file named "Case" and put the names of the other condition to this file. Note that the sample name files contain one sample name per line )
+2, Construct lables: Write the sample names of Group1 and Group2 into text files named $Group1 and $Group2, respectively. (eg. create one text file named "Control" and put the sample names of one condition to this file, create other text file named "Case" and put the names of the other condition to this file. Note that the sample name files contain one sample name per line )
 
 3, Edit the Group1, Group2 and organism in run_PECA_compare_dif_multiple.sh (line 3, 4 and 5 in run_PECA_compare_dif_multiple.sh, eg. Group1=Control; Group2=Case ; organism=human )
 
-4, bash run_PECA_compare_dif_multiple.sh
-
+3, Run: sh PECA_compare_dif_multiple.sh $Group1 $Group2 ${Organism}
+Example： sh PECA_compare_dif_multiple.sh Control Case human
+ 
 The results will be ./Results/CompareGroup_${Group1}_${Group2}. Containing six files:  
 
 specific network of two conditions: ${Group1}_specific_network.txt and ${Group2}_specific_network.txt
