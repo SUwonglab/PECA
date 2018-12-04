@@ -1,8 +1,8 @@
 #/bin/bash
 
-Sample1 = $1   
-Sample2 = $2 
-organism= $3
+Sample1=$1   
+Sample2=$2 
+organism=$3
 # Examples
 #Sample1 = mESC     
 #Sample1 = RAd2  
