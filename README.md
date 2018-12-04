@@ -39,7 +39,7 @@ ${SampleName}.bam.bai is the index file of bam file.
 Note that all the three files should have same before-dot-file-name ${SampleName},only difference is after dot ".txt", ".bam" or ".bam.bai". Please see the example of RAd4 in the ./Input directory.
 
 ### Step 2: Run 
-sh PECA.sh ${sampleName} genome
+sh PECA.sh ${sampleName} ${genome}
 
 Example: sh PECA.sh RAd4 mm9
 
@@ -53,11 +53,11 @@ CRB_pval.txt is the Chromatin regulators' (CR) binding site matrix, each column 
 ## Run PECA_net_dif:
 If you have two samples and want to compare the two samples at network level, please do it by following steps:
 
-1, Run PECA on two samples one by one by "Run PECA"
+1, Run PECA on two samples one by one by "sh PECA.sh ${sampleName} ${genome}"
 
-2, Edit the Sample1, Sample2 and organism in run_PECA_compare_dif.sh (line 3,4 and 5 in run_PECA_compare_dif.sh). 
+2, sh PECA_compare_dif.sh ${Sample1} ${Sample2}
 
-3, bash run_PECA_compare_dif.sh
+Example: sh PECA_compare_dif.sh K562 GM12878
 
 The results will be ./Results/Compare_${Sample1}_${Sample2}. Containing six files:  
 
