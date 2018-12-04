@@ -17,7 +17,7 @@ cd PECA-master/
 
 bash install.sh
 
-bash run_PECA.sh
+bash PECA.sh ${sampleName} ${genome}
 
 ## Install:
 
