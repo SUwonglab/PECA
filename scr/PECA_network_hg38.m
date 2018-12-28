@@ -87,7 +87,7 @@ Cut=prctile(Back_score,99);
 [a b]=find((Score>Cut)==1);
 c=find((Score>Cut)==1);
 c1=full(Score(c));
-Net=[TFName(a) List(b)];
+Net=[TFName(a) geneName(b)];
 [a1,a2]=sort(H1','descend');
 a1=a1(1:10,:);
 a2=a2(1:10,:);
