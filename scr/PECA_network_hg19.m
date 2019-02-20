@@ -44,6 +44,7 @@ G=G(f);
 TFName=TFName(d==1,:);
 TF_binding=TF_binding(d==1,:);
 TFExp=G(f(d==1));
+R2=R2(d==1,:);
 
 fileID = fopen('peak_gene_100k_corr.bed');
 C = textscan(fileID,'%s %s %f32 %f32');
