@@ -1,11 +1,12 @@
-fileID = fopen('region.txt');
-C = textscan(fileID,'%s %s %s  %s');
+fileID = fopen('openness2.bed');
+C = textscan(fileID,'%s %f32 %f32');
 fclose(fileID);
-Element_name=C{1,4};
+Element_name=C{1,1};
+Opn=double(C{1,2});
+Opn_median=double(C{1,3});
 load('../../Data/MotifMatch_human_rmdup.mat')
 load('../../Prior/TFTG_corr_human.mat')
 TF_binding=mfbs(TFName,Element_name,motifName,motifWeight,Match2);
-Opn=dlmread('openness.bed','\t',0,1);
 fileID = fopen('../../Input/toreplace.txt');
 C = textscan(fileID,'%s %f32');
 fclose(fileID);
@@ -35,16 +36,33 @@ fprintf(fid, '%s\n',CRName{i+1,1});
  fclose(fid);
 dlmwrite('CR_binding_pval.txt',CRB_P,'-append','delimiter','\t')
 %%%%%%%%%%%%
+alhfa=0.5;
+Opn_median=log2(1+Opn_median);
+Opn1=log2(1+Opn);
+Opn=double(Opn1.*(Opn1./(Opn_median+0.5)));
 geneName=intersect(List,Symbol);
 [d f]=ismember(geneName,List);
 R2=R2(:,f);
+Exp_median=Exp_median(f);
+Exp_max=Exp_max(f);
 [d f]=ismember(geneName,Symbol);
 G=G(f);
+[d1 f1]=sort(G);
+[d2 f2]=sort(Exp_median);
+G1(f1,1)=d2;
+G=(G1.^(alhfa)).*(G1./(Exp_median+0.5));
 [d f]=ismember(TFName,geneName);
 TFName=TFName(d==1,:);
 TF_binding=TF_binding(d==1,:);
 TFExp=G(f(d==1));
 R2=R2(d==1,:);
+fileID = fopen('./Enrichment/knownResults_TFrank.txt');
+C = textscan(fileID,'%s %f32');
+fclose(fileID);
+[d f]=ismember(TFName,C{1,1});
+TF_motif=zeros(length(TFName),1);
+TF_motif(d==1)=C{1,2}(f(d==1));
+TFExp=TFExp.*(TF_motif);
 
 fileID = fopen('peak_gene_100k_corr.bed');
 C = textscan(fileID,'%s %s %f32 %f32');
@@ -61,7 +79,7 @@ c=double(exp(-1*c3/d0).*c4);
 H1=sparse(f2(:,2),f2(:,1),c,length(geneName),length(Element_name));
 TFO=TF_binding.*repmat(Opn',size(TF_binding,1),1);
 BOH=TFO*H1';
-Score=sqrt(TFExp*G').*(2.^abs(R2)).*full(BOH);
+Score=(TFExp*G').*(2.^abs(R2)).*full(BOH);
 Score(isnan(Score))=0;
 dlmwrite('TFTG_regulationScore.txt',Score,'\t')
 filename='TFName.txt';
