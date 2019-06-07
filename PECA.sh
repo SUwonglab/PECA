@@ -26,7 +26,7 @@ else
 	speciesFull=mouse
 fi
 macs2 callpeak -t ../../Input/${input}.bam -f BAM -n ${input} -g ${species} --nomodel --shift -100 --extsize 200
-cat ${input}_peaks.narrowPeak|awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,$1"_"$2"_"$3}'>region.txt
+cat ${input}_peaks.narrowPeak|awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,$1"_"$2"_"$3}'|grep -v rand |grep -v chrUn > region.txt
 
 echo step 2: motif binding....
 findMotifsGenome.pl region.txt ${genome} ./. -size given -find ../../Data/all_motif_rmdup -preparsedDir ../../../Homer/ > MotifTarget.bed
