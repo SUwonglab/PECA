@@ -53,6 +53,7 @@ cat openness2.bed|awk 'BEGIN{OFS="\t"}{print $1,($2+0.5)/($3+0.5)}'|sort -k2nr|c
 sed "s/species/${speciesFull}/g" ../../scr/mf_collect.m > ./Enrichment/mf_collect.m 
 cd ./Enrichment/
 findMotifsGenome.pl region.bed hg19 ./. -size given -mask -nomotif -mknown ../../../Data/all_motif_rmdup -preparsedDir ../../Homer/
+module load matlab
 matlab -nodisplay -nosplash -nodesktop -r "mf_collect; exit"
 cd ../
 
