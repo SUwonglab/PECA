@@ -44,7 +44,6 @@ geneName=intersect(List,Symbol);
 [d f]=ismember(geneName,List);
 R2=R2(:,f);
 Exp_median=Exp_median(f);
-Exp_max=Exp_max(f);
 [d f]=ismember(geneName,Symbol);
 G=G(f);
 [d1 f1]=sort(G);
