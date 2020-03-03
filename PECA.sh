@@ -74,6 +74,7 @@ paste -d '\t' CRbinding_region2 CR_binding_pval.txt > CRB_pval.txt
 rm CRbinding_region*
 rm CR_binding_pval.txt
 cat TGName.txt |tr '\n' '\t'> TG_head
+echo >> TG_head
 cat TG_head TFTG_regulationScore.txt > TG_score
 echo TFName > TG_1
 cat TG_1 TFName.txt >TG_2
