@@ -12,8 +12,16 @@ C = textscan(fileID,'%s %f32');
 fclose(fileID);
 Symbol=C{1,1};
 G=C{1,2};
+disp([int2str(sum(ismember(Symbol,TFName))),' TFs are identified from the input expression data'])
+if sum(ismember(Symbol,TFName)) < 3
+    error(message('Less than 3 TFs are identified, please check the format of the input expression data. The gene name must be the official gene Symbol. For human it likes POU5F1, FOXA2, ASCL1, TP53; For mouse it likes Pou5f1, Foax2, Ascl1, Tp53.'));
+end
 %%%%CR binding
 load('../../Data/CRInfo_human.mat')
+disp([int2str(sum(ismember(Symbol,CRName))),' CRs are identified from the input expression data'])
+if sum(ismember(Symbol,CRName)) < 3
+    error(message('Less than 3 CRs are identified, please check the format of the input expression data. The gene name must be the official gene Symbol. For human it likes ACTB, CREBBP, EP300; For mouse it likes Actb, Crebbp, Ep300.'));
+end
 eita0=-30.4395;
 eita1=0.8759;
 [d f]=ismember(C_TFName,TFName);
