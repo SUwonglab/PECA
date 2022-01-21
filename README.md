@@ -3,9 +3,11 @@
 ## Introduction:
 
 PECA is a software for inferring context specific gene regulatory network from paired gene expression and chromatin accessibility data.
-Please cite: 
+please cite PECA and PECA2 papers:
 
 Duren, Zhana, et al. "Modeling gene regulation from paired expression and chromatin accessibility data." Proceedings of the National Academy of Sciences 114.25 (2017): E4914-E4923.
+
+Duren, Zhana, et al. "Time course regulatory analysis based on paired expression and chromatin accessibility data." Genome research 30.4 (2020): 622-634.
 
 ## Quickly start:
 
@@ -105,5 +107,6 @@ Files PooledNetwork.txt or PooledModuole.txt can be used to visualize the networ
 
 * bedtools
 
+## Contact:
 
-
+If you have any issues, please contact Zhana Duren by zduren@clemson.edu
