@@ -76,8 +76,10 @@ rm CR_binding_pval.txt
 cat TGName.txt |tr '\n' '\t'> TG_head
 echo >> TG_head
 cat TG_head TFTG_regulationScore.txt > TG_score
+cat TG_head TFTG_regulationScore_norm.txt > TG_score_norm
 echo TFName > TG_1
 cat TG_1 TFName.txt >TG_2
 paste -d '\t' TG_2 TG_score > TFTG_score.txt
+paste -d '\t' TG_2 TG_score_norm > TFTG_score_norm.txt
 rm TG_*
 echo ${input} PECA done
