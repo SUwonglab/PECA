@@ -5,7 +5,7 @@ Element_name=C{1,1};
 Opn=double(C{1,2});
 Opn_median=double(C{1,3});
 load('../../Data/MotifMatch_human_rmdup.mat')
-load('../../Prior/TFTG_corr_human.mat')
+load('TFTG_corr.mat')
 TF_binding=mfbs(TFName,Element_name,motifName,motifWeight,Match2);
 fileID = fopen('../../Input/toreplace.txt');
 C = textscan(fileID,'%s %f32');
