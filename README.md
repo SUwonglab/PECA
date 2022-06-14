@@ -72,14 +72,14 @@ The results will be `./Results/Compare_${Sample1}_${Sample2}`. Containing six fi
 
 - common module of two samples: `${Sample1}_${Sample2}_common_module.txt`
 
-Files `PooledNetwork.txt` or `PooledModole.txt` can be used to visualize the network by cytoscype, and the node lable is given in file `Node_lable.txt`. "1" and "-1" in `PooledNetwork.txt` or `PooledModuole.txt` represent "Activation" and "Repression" respectively. "1" and "2" in Node_lable.txt represent the gene is Sample1 specific or Sample2 specific.
+Files `PooledNetwork.txt` or `PooledModole.txt` can be used to visualize the network by cytoscype, and the node label is given in file `Node_label.txt`. "1" and "-1" in `PooledNetwork.txt` or `PooledModuole.txt` represent "Activation" and "Repression" respectively. "1" and "2" in Node_label.txt represent the gene is Sample1 specific or Sample2 specific.
 
 ## Run PECA_net_dif_multiple:
 If you have two conditions (multiple samples in each conditions) and want to compare the two conditions at network level, please do it by following steps:
 
 1. Prepare networks: Run PECA on all the samples from two conditions one by one by `sh PECA.sh ${sampleName} ${genome}`
 
-2. Construct lables: Write the sample names of Group1 and Group2 into text files named $Group1 and $Group2, respectively. (eg. create one text file named "Control" and put the sample names of one condition to this file, create other text file named "Case" and put the names of the other condition to this file. Note that the sample name files contain one sample name per line )
+2. Construct labels: Write the sample names of Group1 and Group2 into text files named $Group1 and $Group2, respectively. (eg. create one text file named "Control" and put the sample names of one condition to this file, create other text file named "Case" and put the names of the other condition to this file. Note that the sample name files contain one sample name per line )
 
 3. Run: `sh PECA_compare_dif_multiple.sh $Group1 $Group2 ${Organism}`
 Example： `sh PECA_compare_dif_multiple.sh Control Case human`.
@@ -94,7 +94,7 @@ The results will be `./Results/CompareGroup_${Group1}_${Group2}`. Containing six
 
 - common module of two conditions: `${Group1}_${Group2}_common_module.txt`
 
-Files `PooledNetwork.txt` or `PooledModule.txt` can be used to visualize the network by cytoscype, and the node lable is given in file `Node_lable.txt`. "1" and "-1" in `PooledNetwork.txt` or `PooledModuole.txt represent "Activation" and "Repression" respectively. "1" and "2" in Node_lable.txt represent the gene is Group1 specific or Group2 specific.
+Files `PooledNetwork.txt` or `PooledModule.txt` can be used to visualize the network by cytoscype, and the node label is given in file `Node_label.txt`. "1" and "-1" in `PooledNetwork.txt` or `PooledModuole.txt represent "Activation" and "Repression" respectively. "1" and "2" in Node_label.txt represent the gene is Group1 specific or Group2 specific.
 
 ## Requirements:
 
