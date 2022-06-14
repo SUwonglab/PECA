@@ -14,6 +14,9 @@
 input_file=$1
 genome=$2
 
+numCore=`nproc`
+echo $numCore core will be used_in motif analysis
+
 resultFolder=`basename ${input_file}|awk 'BEGIN{FS="."}{print $1}'`
 mkdir ./Results/${resultFolder}
 cd ./Results/${resultFolder}/
@@ -39,7 +42,7 @@ sort -k1,1 -k2,2n peak_raw.bed|mergeBed > peak.bed
 cat peak.bed|awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,$1"_"$2"_"$3}'|grep -v rand |grep -v chrUn > region.txt
 
 echo step 2: motif binding....
-findMotifsGenome.pl region.txt ${genome} ./. -size given -find ../../Data/all_motif_rmdup -preparsedDir ../../../Homer/ > MotifTarget.bed
+findMotifsGenome.pl region.txt ${genome} ./. -size given -find ../../Data/all_motif_rmdup -preparsedDir ../../../Homer/ -p $numCore > MotifTarget.bed
 cat MotifTarget.bed|awk 'NR>1'|cut -f 1,4,6 > MotifTarget.txt
 rm MotifTarget.bed
 rm motifFindingParameters.txt
@@ -97,7 +100,7 @@ mkdir Enrichment
 cat openness2.bed|awk 'BEGIN{OFS="\t"}{print $1,($2+0.5)/($3+0.5)}'|sort -k2nr|cut -f 1|tr '_' '\t'|awk 'BEGIN{OFS="\t"}{if ($3-$2 < 2000) print $0}'|head -10000 > ./Enrichment/region.bed
 sed "s/species/${speciesFull}/g" ../../scr/mf_collect.m > ./Enrichment/mf_collect.m 
 cd ./Enrichment/
-findMotifsGenome.pl region.bed ${genome} ./. -size given -mask -nomotif -mknown ../../../Data/all_motif_rmdup -preparsedDir ../../../Homer/
+findMotifsGenome.pl region.bed ${genome} ./. -size given -mask -nomotif -mknown ../../../Data/all_motif_rmdup -preparsedDir ../../../Homer/ -p $numCore
 module load matlab
 matlab -nodisplay -nosplash -nodesktop -r "mf_collect; exit"
 cd ../
