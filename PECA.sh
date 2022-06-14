@@ -61,7 +61,7 @@ cd ../
 echo step 4: Prior....
 bedtools intersect -a region.bed -b ../../Prior/RE_gene_corr_${genome}.bed -wa -wb -sorted|cut -f 1-3,7-9|sed 's/\t/\_/1'|sed 's/\t/\_/1'>peak_gene_100k_corr.bed
 bedtools intersect -a region.bed -b ../../Prior/Enhancer_RE_gene_corr_${genome}.bed -wa -wb -sorted|cut -f 1-3,7-9|sed 's/\t/\_/1'|sed 's/\t/\_/1'>>peak_gene_100k_corr.bed
-cat ../../Data/TFTG_corr_${speciesFull}.mat > TFTG_corr.mat
+cat ../../Prior/TFTG_corr_${speciesFull}.mat > TFTG_corr.mat
 
 echo step 5: Network....
 cp ../../scr/mfbs.m ./.
