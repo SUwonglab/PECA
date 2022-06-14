@@ -48,6 +48,7 @@ echo step 3: calculate opn...
 cat region.txt|cut -f 1-3|sort -k1,1 -k2,2n > region.bed
 cat region.bed|awk 'BEGIN{OFS="\t"}{print $1,$2-500000,$3+500000}'| awk '{$2=$2<0?1:$2}1'|tr ' ' '\t'>background.bed
 
+cat region.bed >openness_allSamples.bed
 while read input
 do
 cat region.bed >a1
@@ -63,7 +64,11 @@ cp region.txt ../${input}/
 ln -s MotifTarget.txt ../${input}/
 rm a1
 rm read.bed
+cat openness_${input}.bed|cut -f 2 > a2
+paste -d '\t' openness_allSamples.bed  a2 > a1
+mv a1 openness_allSamples.bed
 done < ${input_file} 
+awk 'BEGIN{OFS="\t"}{s=0; for (i=4; i<=NF;i++) s += $i; print $1,$2,$3,s/(NF-3)}' openness_allSamples.bed > openness_mean.bed
 
 echo step 4: Prior....
 cat ../../Data/promoter_${genome}.bed| awk 'BEGIN{OFS="\t"}{print $1,$2-200000,$3+200000,$4}'| awk '{$2=$2<0?1:$2}1'|tr ' ' '\t' > promoter_200k.bed
@@ -78,6 +83,7 @@ while read input
 do
 cat RE_TG.bed > ../${input}/peak_gene_100k_corr.bed
 cp TFTG_corr.mat ../${input}/
+cp openness_mean.bed ../${input}/
 done < ${input_file} 
 cd ../
 
@@ -86,7 +92,7 @@ while read input
 do
 cd ./${input}/
 cat openness.bed |tr '_' '\t' > openness1.bed
-bedtools intersect -a openness1.bed -b ../../Prior/Opn_median_${genome}.bed -wa -wb -sorted|cut -f 1-4,8|sed 's/\t/_/1'|sed 's/\t/_/1'|sed 's/\t/_/1'|awk 'BEGIN{OFS="\t"}{ if ($2>a[$1] ) a[$1]=$2 }END{for (i in a) print i,a[i]}'|sed 's/_/\t/3' > openness2.bed
+bedtools intersect -a openness1.bed -b openness_mean.bed -wa -wb -sorted|cut -f 1-4,8|sed 's/\t/_/1'|sed 's/\t/_/1'|sed 's/\t/_/1'|awk 'BEGIN{OFS="\t"}{ if ($2>a[$1] ) a[$1]=$2 }END{for (i in a) print i,a[i]}'|sed 's/_/\t/3' > openness2.bed
 mkdir Enrichment
 cat openness2.bed|awk 'BEGIN{OFS="\t"}{print $1,($2+0.5)/($3+0.5)}'|sort -k2nr|cut -f 1|tr '_' '\t'|awk 'BEGIN{OFS="\t"}{if ($3-$2 < 2000) print $0}'|head -10000 > ./Enrichment/region.bed
 sed "s/species/${speciesFull}/g" ../../scr/mf_collect.m > ./Enrichment/mf_collect.m 
