@@ -55,7 +55,7 @@ CRB_pval.txt is the Chromatin regulators' (CR) binding site matrix, each column 
 ## Run PECA without ENCODE data information
 PECA model uses prior information from ENCODE data. One can learn this prior information using their own data without using the ENCODE data if the number of paired samples are greater than 5.
 
-sh PECA_withoutENCODE.sh sampleNameFile genome
+sh PECA_withoutENCODE.sh FullPath_to_sampleNameFile genome
 
 Example: sh PECA_withoutENCODE.sh /home/user/sampleName.txt hg19
 Here /home/user/sampleName.txt is a txt file that contain sample names (contain one sample name per line). For example
