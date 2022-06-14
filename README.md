@@ -19,7 +19,7 @@ cd PECA-master/
 
 bash install.sh
 
-bash PECA.sh ${sampleName} ${genome}
+bash PECA.sh sampleName genome
 
 ## Install:
 
@@ -41,7 +41,7 @@ ${SampleName}.bam.bai is the index file of bam file.
 Note that all the three files should have same before-dot-file-name ${SampleName},only difference is after dot ".txt", ".bam" or ".bam.bai". Please see the example of RAd4 in the ./Input directory.
 
 ### Step 2: Run 
-sh PECA.sh ${sampleName} ${genome}
+sh PECA.sh sampleName genome
 
 Example: sh PECA.sh RAd4 mm9
 
@@ -55,16 +55,23 @@ CRB_pval.txt is the Chromatin regulators' (CR) binding site matrix, each column 
 ## Run PECA without ENCODE data information
 PECA model uses prior information from ENCODE data. One can learn this prior information using their own data without using the ENCODE data if the number of paired samples are greater than 5.
 
-sh PECA_withoutENCODE.sh ${sampleNameFile} ${genome}
+sh PECA_withoutENCODE.sh sampleNameFile genome
 
 Example: sh PECA_withoutENCODE.sh /home/user/sampleName.txt hg19
 Here /home/user/sampleName.txt is a txt file that contain sample names (contain one sample name per line). For example
+
 ES_day0
+
 ES_day2
+
 ES_day4
+
 ES_day6
+
 ES_day10
+
 ES_day20
+
 Under Input folder you should have ES_day0.txt, ES_day0.bam, and ES_day0.bam.bai, and the same for other samples.
 ## Run PECA_net_dif:
 If you have two samples and want to compare the two samples at network level, please do it by following steps:
