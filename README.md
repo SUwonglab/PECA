@@ -72,7 +72,7 @@ The results will be `./Results/Compare_${Sample1}_${Sample2}`. Containing six fi
 
 - common module of two samples: `${Sample1}_${Sample2}_common_module.txt`
 
-Files `PooledNetwork.txt` or `PooledModuole.txt` can be used to visualize the network by cytoscype, and the node lable is given in file `Node_lable.txt`. "1" and "-1" in `PooledNetwork.txt` or `PooledModuole.txt` represent "Activation" and "Repression" respectively. "1" and "2" in Node_lable.txt represent the gene is Sample1 specific or Sample2 specific.
+Files `PooledNetwork.txt` or `PooledModole.txt` can be used to visualize the network by cytoscype, and the node lable is given in file `Node_lable.txt`. "1" and "-1" in `PooledNetwork.txt` or `PooledModuole.txt` represent "Activation" and "Repression" respectively. "1" and "2" in Node_lable.txt represent the gene is Sample1 specific or Sample2 specific.
 
 ## Run PECA_net_dif_multiple:
 If you have two conditions (multiple samples in each conditions) and want to compare the two conditions at network level, please do it by following steps:
@@ -94,7 +94,7 @@ The results will be `./Results/CompareGroup_${Group1}_${Group2}`. Containing six
 
 - common module of two conditions: `${Group1}_${Group2}_common_module.txt`
 
-Files `PooledNetwork.txt` or `PooledModuole.txt` can be used to visualize the network by cytoscype, and the node lable is given in file `Node_lable.txt`. "1" and "-1" in `PooledNetwork.txt` or `PooledModuole.txt represent "Activation" and "Repression" respectively. "1" and "2" in Node_lable.txt represent the gene is Group1 specific or Group2 specific.
+Files `PooledNetwork.txt` or `PooledModule.txt` can be used to visualize the network by cytoscype, and the node lable is given in file `Node_lable.txt`. "1" and "-1" in `PooledNetwork.txt` or `PooledModuole.txt represent "Activation" and "Repression" respectively. "1" and "2" in Node_lable.txt represent the gene is Group1 specific or Group2 specific.
 
 ## Requirements:
 
