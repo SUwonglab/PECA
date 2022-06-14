@@ -98,7 +98,7 @@ Files `PooledNetwork.txt` or `PooledModule.txt` can be used to visualize the net
 
 ## Requirements:
 
-* Matlab
+* Matlab (Optimization Toolbox)
 
 * macs2
 
