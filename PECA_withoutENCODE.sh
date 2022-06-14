@@ -62,7 +62,6 @@ cp region.bed ../${input}/
 cp region.txt ../${input}/
 ln -s MotifTarget.txt ../${input}/
 rm a1
-rm back*
 rm read.bed
 done < ${input_file} 
 
@@ -70,7 +69,8 @@ echo step 4: Prior....
 cat ../../Data/promoter_${genome}.bed| awk 'BEGIN{OFS="\t"}{print $1,$2-200000,$3+200000,$4}'| awk '{$2=$2<0?1:$2}1'|tr ' ' '\t' > promoter_200k.bed
 bedtools intersect -a region.txt -b  promoter_200k.bed -wa -wb|cut -f 4,8 > peak_gene.txt
 bedtools intersect -a region.txt -b  promoter_200k.bed -wa -wb|awk '{print $3-$7+100000}'|awk '{$1=$1<0?-$1:$1}1' > dis
-sed "s/SampleNameFile/${input_file}/g" ../../scr/prior_calculation.m|sed "s/speciesFull/${speciesFull}/g" > prior_calculation.m
+cat ${input_file} > SampleNameFile
+sed "s/speciesFull/${speciesFull}/g" ../../scr/prior_calculation.m > prior_calculation.m
 matlab -nodisplay -nosplash -nodesktop -r "prior_calculation; exit"
 paste -d '\t' peak_gene.txt dis > a
 paste -d '\t' a corr > RE_TG.bed
