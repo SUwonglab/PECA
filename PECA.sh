@@ -13,6 +13,8 @@ genome=$2
 # Examples
 #input = RAd4     your input file RAd4.txt (gene expression data), RAd4.bam (chromatin accessibility data), and RAd4.bam.bai (bam index file) are under folder./Input
 #genome = mm9  Your refference genome is mm9, software is only available for mm9, mm10, hg19 and hg38 currently 
+numCore=`nproc`
+echo $numCore core will be used_in motif analysis
 
 mkdir ./Results/${input}
 cd ./Results/${input}/
@@ -29,7 +31,7 @@ macs2 callpeak -t ../../Input/${input}.bam -f BAM -n ${input} -g ${species} --no
 cat ${input}_peaks.narrowPeak|awk 'BEGIN{FS="\t";OFS="\t"}{print $1,$2,$3,$1"_"$2"_"$3}'|grep -v rand |grep -v chrUn > region.txt
 
 echo step 2: motif binding....
-findMotifsGenome.pl region.txt ${genome} ./. -size given -find ../../Data/all_motif_rmdup -preparsedDir ../../../Homer/ > MotifTarget.bed
+findMotifsGenome.pl region.txt ${genome} ./. -size given -find ../../Data/all_motif_rmdup -preparsedDir ../../../Homer/ -p $numCore > MotifTarget.bed
 cat MotifTarget.bed|awk 'NR>1'|cut -f 1,4,6 > MotifTarget.txt
 rm MotifTarget.bed
 rm motifFindingParameters.txt
@@ -52,7 +54,7 @@ mkdir Enrichment
 cat openness2.bed|awk 'BEGIN{OFS="\t"}{print $1,($2+0.5)/($3+0.5)}'|sort -k2nr|cut -f 1|tr '_' '\t'|awk 'BEGIN{OFS="\t"}{if ($3-$2 < 2000) print $0}'|head -10000 > ./Enrichment/region.bed
 sed "s/species/${speciesFull}/g" ../../scr/mf_collect.m > ./Enrichment/mf_collect.m 
 cd ./Enrichment/
-findMotifsGenome.pl region.bed ${genome} ./. -size given -mask -nomotif -mknown ../../../Data/all_motif_rmdup -preparsedDir ../../../Homer/
+findMotifsGenome.pl region.bed ${genome} ./. -size given -mask -nomotif -mknown ../../../Data/all_motif_rmdup -preparsedDir ../../../Homer/ -p $numCore
 module load matlab
 matlab -nodisplay -nosplash -nodesktop -r "mf_collect; exit"
 cd ../
