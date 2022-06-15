@@ -72,7 +72,7 @@ ES_day10
 
 ES_day20
 
-Under Input folder you should have ES_day0.txt, ES_day0.bam, and ES_day0.bam.bai, and the same for other samples.
+Under Input folder you should have ES_day0.txt, ES_day0.bam, and ES_day0.bam.bai, and the same for other samples. The reults of ES_day0 will be stored in ./Results__withoutENCODE/ES_day0/.
 ## Run PECA_net_dif:
 If you have two samples and want to compare the two samples at network level, please do it by following steps:
 
