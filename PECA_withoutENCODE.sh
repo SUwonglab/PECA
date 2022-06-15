@@ -18,8 +18,9 @@ numCore=`nproc`
 echo $numCore core will be used_in motif analysis
 
 resultFolder=`basename ${input_file}|awk 'BEGIN{FS="."}{print $1}'`
-mkdir ./Results/${resultFolder}
-cd ./Results/${resultFolder}/
+mkdir ./Results_withoutENCODE
+mkdir ./Results_withoutENCODE/${resultFolder}
+cd ./Results_withoutENCODE/${resultFolder}/
 echo step 1: call peak from bam file....
 
 if [ `echo $genome|grep hg|wc -l` -gt 0 ]
