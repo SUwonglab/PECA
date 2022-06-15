@@ -64,7 +64,6 @@ mkdir ../${input}/
 cat openness_${input}.bed > ../${input}/openness.bed
 cp region.bed ../${input}/
 cp region.txt ../${input}/
-ln -s MotifTarget.txt ../${input}/
 rm a1
 rm read.bed
 cat openness_${input}.bed|cut -f 2 > a2
@@ -101,13 +100,11 @@ cat openness2.bed|awk 'BEGIN{OFS="\t"}{print $1,($2+0.5)/($3+0.5)}'|sort -k2nr|c
 sed "s/species/${speciesFull}/g" ../../scr/mf_collect.m > ./Enrichment/mf_collect.m 
 cd ./Enrichment/
 findMotifsGenome.pl region.bed ${genome} ./. -size given -mask -nomotif -mknown ../../../Data/all_motif_rmdup -preparsedDir ../../../Homer/ -p $numCore
-module load matlab
 matlab -nodisplay -nosplash -nodesktop -r "mf_collect; exit"
 cd ../
 cp ../../scr/mfbs.m ./.
 sed "s/toreplace/${input}/g" ../../scr/PECA_network_${genome}.m > PECA_network.m
-module load matlab
-matlab -nodisplay -nosplash -nodesktop -r "PECA_network; exit"
+matlab -nodisplay -nosplash -nodesktop -r "addpath('../$resultFolder/');PECA_network; exit"
 echo region > CRbinding_region
 cat region.txt|cut -f 4 > CRbinding_region1
 cat CRbinding_region CRbinding_region1> CRbinding_region2
