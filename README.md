@@ -104,7 +104,7 @@ If you have two conditions (multiple samples in each conditions) and want to com
 3, Run: `sh PECA_compare_dif_multiple.sh $Group1 $Group2 ${Organism}`
 Example： `sh PECA_compare_dif_multiple.sh Control Case human`
  
-The results will be ./Results/CompareGroup_${Group1}_${Group2}. Containing six files:  
+The results will be `./Results/CompareGroup_${Group1}_${Group2}`. Containing six files:  
 
 specific network of two conditions: `${Group1}_specific_network.txt` and `${Group2}_specific_network.txt`
 
