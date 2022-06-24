@@ -84,7 +84,7 @@ Example: `sh PECA_compare_dif.sh K562 GM12878 human` ; `sh PECA_compare_dif.sh m
 
 The results will be `./Results/Compare_${Sample1}_${Sample2}`. Containing six files:  
 
-specific network of two samples: ${Sample1}_specific_network.txt and ${Sample2}_specific_network.txt
+specific network of two samples: `${Sample1}_specific_network.txt` and `${Sample2}_specific_network.txt`
 
 common network of two samples: ${Sample1}_${Sample2}_common_network.txt 
 
@@ -106,7 +106,7 @@ Example： `sh PECA_compare_dif_multiple.sh Control Case human`
  
 The results will be ./Results/CompareGroup_${Group1}_${Group2}. Containing six files:  
 
-specific network of two conditions: ${Group1}_specific_network.txt and ${Group2}_specific_network.txt
+specific network of two conditions: `${Group1}_specific_network.txt` and `${Group2}_specific_network.txt`
 
 common network of two conditions: ${Group1}_${Group2}_common_network.txt 
 
