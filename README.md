@@ -86,11 +86,11 @@ The results will be `./Results/Compare_${Sample1}_${Sample2}`. Containing six fi
 
 specific network of two samples: `${Sample1}_specific_network.txt` and `${Sample2}_specific_network.txt`
 
-common network of two samples: ${Sample1}_${Sample2}_common_network.txt 
+common network of two samples: `${Sample1}_${Sample2}_common_network.txt`
 
-specific module of two networks:  ${Sample1}_specific_module.txt and ${Sample2}_specific_module.txt
+specific module of two networks:  `${Sample1}_specific_module.txt` and `${Sample2}_specific_module.txt`
 
-common module of two samples: ${Sample1}_${Sample2}_common_module.txt 
+common module of two samples: `${Sample1}_${Sample2}_common_module.txt` 
 
 Files PooledNetwork.txt or PooledModule.txt can be used to visualize the network by cytoscype, and the node lable is given in file Node_lable.txt. "1" and "-1" in PooledNetwork.txt or PooledModuole.txt represent "Activation" and "Repression" respectively. "1" and "2" in Node_lable.txt represent the gene is Sample1 specific or Sample2 specific.
 
@@ -108,11 +108,11 @@ The results will be ./Results/CompareGroup_${Group1}_${Group2}. Containing six f
 
 specific network of two conditions: `${Group1}_specific_network.txt` and `${Group2}_specific_network.txt`
 
-common network of two conditions: ${Group1}_${Group2}_common_network.txt 
+common network of two conditions: `${Group1}_${Group2}_common_network.txt` 
 
-specific module of two conditions:  ${Group1}_specific_module.txt and ${Group2}_specific_module.txt
+specific module of two conditions:  `${Group1}_specific_module.txt` and `${Group2}_specific_module.txt`
 
-common module of two conditions: ${Group1}_${Group2}_common_module.txt
+common module of two conditions: `${Group1}_${Group2}_common_module.txt`
 
 Files PooledNetwork.txt or PooledModuole.txt can be used to visualize the network by cytoscype, and the node lable is given in file Node_lable.txt. "1" and "-1" in PooledNetwork.txt or PooledModuole.txt represent "Activation" and "Repression" respectively. "1" and "2" in Node_lable.txt represent the gene is Group1 specific or Group2 specific.
 
