@@ -118,7 +118,7 @@ Files PooledNetwork.txt or PooledModuole.txt can be used to visualize the networ
 
 ## Requirements:
 
-* Matlab
+* Matlab (Optimization Toolbox)
 
 * macs2
 
