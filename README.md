@@ -43,9 +43,9 @@ Note that all the three files should have same before-dot-file-name ${SampleName
 ### Step 2: Run 
 `sh PECA.sh ${SampleName} ${genome}`
 
-Example: sh PECA.sh RAd4 mm9
+Example: `sh PECA.sh RAd4 mm9`
 
-The results will be ./Results/${SampleName}/ .
+The results will be `./Results/${SampleName}/` .
 ${SampleName}_network.txt is the tissue specific network.
 
 TFTG_score.txt is regulation strength for the all TF to TG. Each row represent one TF and each column represents one target gene. Higher value represents higher possibility of regulation.
