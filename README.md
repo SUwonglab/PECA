@@ -41,7 +41,7 @@ ${SampleName}.bam.bai is the index file of bam file.
 Note that all the three files should have same before-dot-file-name ${SampleName},only difference is after dot ".txt", ".bam" or ".bam.bai". Please see the example of RAd4 in the ./Input directory.
 
 ### Step 2: Run 
-sh PECA.sh sampleName genome
+sh PECA.sh ${SampleName} ${genome}
 
 Example: sh PECA.sh RAd4 mm9
 
