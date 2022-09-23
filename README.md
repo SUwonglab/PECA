@@ -45,6 +45,8 @@ Note that all the three files should have same before-dot-file-name ${SampleName
 
 Example: `sh PECA.sh RAd4 mm9`
 
+To make sure the code run smoothly, please provide at least 64GB memory.
+
 The results will be `./Results/${SampleName}/` .
 ${SampleName}_network.txt is the tissue specific network.
 
