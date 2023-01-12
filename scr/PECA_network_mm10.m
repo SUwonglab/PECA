@@ -73,6 +73,8 @@ fclose(fileID);
 [f2 ia ic]=unique([f(d.*d1==1) f1(d.*d1==1)],'rows');
 c3=accumarray(ic,C{1,3}(d.*d1==1),[],@min);
 c4=accumarray(ic,C{1,4}(d.*d1==1),[],@min);
+RETG_w=c4;
+RETG_name=[Element_name(f2(:,1))  geneName(f2(:,2))];
 c4(c4<0.2)=0;
 d0=500000;
 c=double(exp(-1*c3/d0).*c4);
@@ -110,6 +112,22 @@ Cut=prctile(Back_score,99);
 c=find((Score>Cut)==1);
 c1=full(Score(c));
 Net=[TFName(a) geneName(b)];
+
+d=ismember(RETG_name(:,2),unique(Net));
+RETG_name=RETG_name(d,:);
+RETG_w=RETG_w(d,:);
+filename='toreplace_RE_TG.txt';
+fid=fopen(filename,'wt');
+	fprintf(fid, '%s\t','RE');
+	fprintf(fid, '%s\t','TG');
+	fprintf(fid, '%s\n','Weight');
+for i=1:size(RETG_w,1)
+	fprintf(fid, '%s\t',RETG_name{i,1});
+	fprintf(fid, '%s\t',RETG_name{i,2});
+	fprintf(fid, '%g\n',RETG_w(i,1));
+end
+fclose(fid);
+
 [a1,a2]=sort(H1','descend');
 a1=a1(1:10,:);
 a2=a2(1:10,:);
