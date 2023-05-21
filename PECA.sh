@@ -67,7 +67,6 @@ cat ../../Prior/TFTG_corr_${speciesFull}.mat > TFTG_corr.mat
 
 echo step 5: Network....
 cp ../../scr/mfbs.m ./.
-cat ../../Prior/TFTG_corr_${speciesFull}.mat > TFTG_corr.mat
 sed "s/toreplace/${input}/g" ../../scr/PECA_network_${genome}.m > PECA_network.m
 module load matlab
 matlab -nodisplay -nosplash -nodesktop -r "PECA_network; exit"
