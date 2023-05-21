@@ -4,6 +4,7 @@ fclose(fileID);
 Element_name=C{1,1};
 Opn=double(C{1,2});
 Opn_median=double(C{1,3});
+Opn_median(isnan(Opn_median))=1;
 load('../../Data/MotifMatch_mouse_rmdup.mat')
 load('TFTG_corr.mat')
 TF_binding=mfbs(TFName,Element_name,motifName,motifWeight,Match2);
