@@ -23,7 +23,7 @@ Sample5  1  1  59
 Sample6  0  0  68
 ```
 ### Without bam file
-For some study, like single cell multiome, generating bam file is to convinient. In this case, we can use predefined peak and openness to run the model.
+For some study, like single cell multiome, generating bam file is not convinient. In this case, we can use predefined peaks and openness to run the model.
 ```
 sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 \
                                   --peak_file /full/path/to/peak.bed \
@@ -31,3 +31,18 @@ sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 \
 sh PECA_compare_withoutENCODE.sh Group1.txt Group2.txt All_sample_name.txt --Design_Matrix covariates_knock.txt
 ```
 Here the peak is a three-columns bed file, and the openness is a tab delimited text file where the first three columns are (chr start end). The 4th column is the openness of the 1-st sample, 5-th column is the openness of 2-nd sample,.....
+### Predefined motif-scan
+```
+sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 \
+                                  --peak_file /full/path/to/peak.bed \
+                                  --openness_file /full/path/to/openness.txt
+                                  --motif_file /full/path/to/MotifTarget.txt
+sh PECA_compare_withoutENCODE.sh Group1.txt Group2.txt All_sample_name.txt --Design_Matrix covariates_knock.txt
+```
+Here the MotifTarget.txt is three-columns tab delimited text file. We can obtian this file from homer by following script.
+```
+findMotifsGenome.pl region.txt hg19 ./. -size given -find ./Data/all_motif_rmdup -preparsedDir ./Homer/ > MotifTarget.bed
+cat MotifTarget.bed|awk 'NR>1'|cut -f 1,4,6 > MotifTarget.txt
+rm MotifTarget.bed
+rm motifFindingParameters.txt
+```
