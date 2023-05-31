@@ -50,9 +50,9 @@ fi
 matlab -nodisplay -nosplash -nodesktop -r "compareNet; exit"
 cat *_specific_network.txt|grep -v log10P_Regulation|cut -f 1-3|awk '{$3=$3>0?1:-1}1'|tr ' ' '\t'|sort|uniq > PooledNetwork.txt
 cat *_specific_module.txt|grep -v log10P_Regulation|cut -f 1-3|awk '{$3=$3>0?1:-1}1'|tr ' ' '\t'|sort|uniq > PooledModule.txt
-cat ${Group1}_specific_network.txt |awk 'NR>1'|awk 'BEGIN{OFS="\t"}{if($7>1.1) print $0}'|awk 'BEGIN{OFS="\t"}{if($8>0.5) print $0}'|awk 'BEGIN{OFS="\t"}{if($3>0.2) print $0}' > ${Group1}_specific_network_filter.txt
+cat ${Group1}_specific_network.txt |awk 'NR>1'|awk 'BEGIN{OFS="\t"}{if($7>1.1) print $0}'|awk 'BEGIN{OFS="\t"}{if($8>0.1) print $0}'|awk 'BEGIN{OFS="\t"}{if($3>0) print $0}' > ${Group1}_specific_network_filter.txt
 cat ${Group1}_specific_network_filter.txt|cut -f 1|sort|uniq -c|awk 'BEGIN{OFS="\t"}{print $2,$1}'|sort -k2nr > ${Group1}_specific_TF_outDegree.txt
-cat ${Group2}_specific_network.txt |awk 'NR>1'|awk 'BEGIN{OFS="\t"}{if($7>1.1) print $0}'|awk 'BEGIN{OFS="\t"}{if($8>0.5) print $0}'|awk 'BEGIN{OFS="\t"}{if($3>0.2) print $0}' > ${Group2}_specific_network_filter.txt
+cat ${Group2}_specific_network.txt |awk 'NR>1'|awk 'BEGIN{OFS="\t"}{if($7>1.1) print $0}'|awk 'BEGIN{OFS="\t"}{if($8>0.1) print $0}'|awk 'BEGIN{OFS="\t"}{if($3>0) print $0}' > ${Group2}_specific_network_filter.txt
 cat ${Group2}_specific_network_filter.txt|cut -f 1|sort|uniq -c|awk 'BEGIN{OFS="\t"}{print $2,$1}'|sort -k2nr > ${Group2}_specific_TF_outDegree.txt
 paste -d '\t' Diff_TF_TG_pairs.txt Diff_net_raw.txt > Diff_TF_TG_pairs_scores.txt
 paste -d '\t' Diff_TF_TG_pairs.txt Diff_net_normalized.txt > Diff_TF_TG_pairs_scores_normalized.txt
