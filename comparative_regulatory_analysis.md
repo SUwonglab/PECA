@@ -48,13 +48,16 @@ rm motifFindingParameters.txt
 ```
 ## Figures and Tables
 ### Filtering networks
-Condition specific network may contain many TF-TG pairs so that it may difficult to be visualized. Users can filter networks (i.e. Group1_specific_network.txt ) based on fold-change in regulation score difference (column 7), Activity of TF-TG regulation (ranging from 0-1, column 8), and/or TF-TG correlation (column 3). 
+The condition-specific network may contain many TF-TG pairs so it may difficult to be visualized. Users can filter networks (i.e. Group1_specific_network.txt ) based on fold-change in regulation score difference (column 7), Activity of TF-TG regulation (ranging from 0-1, column 8), and/or TF-TG correlation (column 3). 
 ```
 cat ${Group1}_specific_network.txt |awk 'NR>1'|awk 'BEGIN{OFS="\t"}{if($7>1.1) print $0}'|awk 'BEGIN{OFS="\t"}{if($8>0.5) print $0}'|awk 'BEGIN{OFS="\t"}{if($3>0.2) print $0}' > ${Group1}_specific_network_filter.txt
 ```
 The same filtering could be done for Group1_specific_TFnetwork.txt and Group1_specific_module.txt.
 ### TF-TG network by Cytoscape
-For the filtered TF-TG network, TF-TF network, or TF-TG module, user can plot condition speicifc regulatory network in Cytoscape by using the first three column information from the filter network files.
-User also can take a union of networks from two conditions, and visulize them together in the same network in Cytoscape. The Node_label.txt file can be used for node attribute and give colors for nodes based on the expression pattren. 
-### Condition specific driver TFs
-The Group1_specific_TF_outDegree.txt and Group2_specific_TF_outDegree.txt reflect the importance of TFs in two conditions. User may visulize the outdegree (# of TGs in filtered network) in each condition.
+For the filtered TF-TG network, TF-TF network, or TF-TG module, users can plot condition-specific regulatory networks in Cytoscape by using the first three columns of information from the filter network files.
+Users also can take a union of networks from two conditions, and visualize them together in the same network in Cytoscape. The Node_label.txt file can be used for node attributes and give colors for nodes based on the expression patterns. 
+### Condition-specific driver TFs
+The Group1_specific_TF_outDegree.txt and Group2_specific_TF_outDegree.txt reflect the importance of TFs in two conditions. Users may visualize the outdegree (# of TGs in the filtered network) in each condition.
+### differential TF-TG regulation score
+The Diff_TF_TG_pairs_scores_normalized.txt (covariates controlled) or Diff_TF_TG_pairs_scores_raw.txt could be used to visualize the differential regulatory patterns by clustering/heatmap for chosen TF-TG pairs (i.e. target genes of a specific TF, multiple TFs for a specific target gene, top ranking differential regulations).
+
