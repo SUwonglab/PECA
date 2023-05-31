@@ -22,7 +22,7 @@ Sample4  0  0  62
 Sample5  1  1  59
 Sample6  0  0  68
 ```
-### Without bam file (useful for sc-multiome)
+### Without bam file (could be used for sc-multiome)
 For some studies, like single cell multiome, generating a bam file is not convenient. In this case, we can use predefined peaks and openness to run the model. For each cluster, we can use the aggregated RNA-seq and ATAC-seq over cells from the same individual to generate pseudo-bulk gene expression and chromatin accessibility for each individual and run PECA. High-resolution peaks (i.e. separate peak-calling by MACS2 for each cluster) are helpful for regulatory network analysis compared to the default broad peaks from the cellRanger.  Peak calling for each cluster after clustering is recommended (for detail, please see the scREG package: https://github.com/Durenlab/RegNMF).
 ```
 sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 \
