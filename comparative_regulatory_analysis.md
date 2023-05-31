@@ -39,7 +39,7 @@ sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 \
                                   --motif_file /full/path/to/MotifTarget.txt
 sh PECA_compare_withoutENCODE.sh Group1.txt Group2.txt All_sample_name.txt --Design_Matrix covariates_knock.txt
 ```
-Here the MotifTarget.txt is a three-column tab-delimited text file. We can obtain this file from Homer by following the script.
+Motif-scan is the most time and space consuming step in PECA so that user can scan motifs first and give it to PECA as input to avoid doing motif-scan agian and agian for multiple samples or multiple runs. Here the MotifTarget.txt is a three-column tab-delimited text file. We can obtain this file from Homer by following the script.
 ```
 findMotifsGenome.pl region.txt hg19 ./. -size given -find ./Data/all_motif_rmdup -preparsedDir ./Homer/ > MotifTarget.bed
 cat MotifTarget.bed|awk 'NR>1'|cut -f 1,4,6 > MotifTarget.txt
@@ -47,5 +47,10 @@ rm MotifTarget.bed
 rm motifFindingParameters.txt
 ```
 ## Figures and Tables
-### Condition specific TF-TG network by cytoscape
+### Filtering networks
+User can filter networks (i.e. Group1_specific_network.txt ) based on fold-change in regulation score difference (column 7), Activity of TF-TG regulation (ranging from 0-1, column 8), and/or TF-TG correlation (column 3). 
+```
+cat ${Group1}_specific_network.txt |awk 'NR>1'|awk 'BEGIN{OFS="\t"}{if($7>1.1) print $0}'|awk 'BEGIN{OFS="\t"}{if($8>0.5) print $0}'|awk 'BEGIN{OFS="\t"}{if($3>0.2) print $0}' > ${Group1}_specific_network_filter.txt
+```
+### Condition specific TF-TG network by Cytoscape
 ### Condition specific driver TFs
