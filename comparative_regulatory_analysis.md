@@ -52,5 +52,9 @@ Condition specific network may contain many TF-TG pairs so that it may difficult
 ```
 cat ${Group1}_specific_network.txt |awk 'NR>1'|awk 'BEGIN{OFS="\t"}{if($7>1.1) print $0}'|awk 'BEGIN{OFS="\t"}{if($8>0.5) print $0}'|awk 'BEGIN{OFS="\t"}{if($3>0.2) print $0}' > ${Group1}_specific_network_filter.txt
 ```
-### Condition specific TF-TG network by Cytoscape
+The same filtering could be done for Group1_specific_TFnetwork.txt and Group1_specific_module.txt.
+### TF-TG network by Cytoscape
+For the filtered TF-TG network, TF-TF network, or TF-TG module, user can plot condition speicifc regulatory network in Cytoscape by using the first three column information from the filter network files.
+User also can take a union of networks from two conditions, and visulize them together in the same network in Cytoscape. The Node_label.txt file can be used for node attribute and give colors for nodes based on the expression pattren. 
 ### Condition specific driver TFs
+The Group1_specific_TF_outDegree.txt and Group2_specific_TF_outDegree.txt reflect the importance of TFs in two conditions. User may visulize the outdegree (# of TGs in filtered network) in each condition.
