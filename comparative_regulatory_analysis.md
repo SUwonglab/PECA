@@ -5,5 +5,18 @@ If you have three or more samples in each group, you can leverage PECA for perfo
 sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 
 sh PECA_compare_withoutENCODE.sh Group1.txt Group2.txt All_sample_name.txt
 ```
-Here Group1.txt Group2.txt All_sample_name.txt are three text file contain sample names, which have to be consistent with the sample name given under the ./Input folder. For the input detail please see README.md.
-## Step by step
+Here Group1.txt Group2.txt All_sample_name.txt are three one-column-text-files contain sample names, which have to be consistent with the sample name given under the ./Input folder. For the input detail please see README.md.
+## Additional Features and Customization
+### covariate control
+```
+sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 
+sh PECA_compare_withoutENCODE.sh Group1.txt Group2.txt All_sample_name.txt --Design_Matrix covariates_knock.txt
+```
+Write all covariates into a design matrix (i.e. covariates_knock.txt). Here the design matrix is a tab deliminated text file as this example:
+Name  Is_treatment  Is_male  Age
+Sample1  1  1  66
+Sample2  0  1  54
+Sample3  1  0  76
+Sample4  0  0  62
+Sample5  1  1  59
+Sample6  0  0  68
