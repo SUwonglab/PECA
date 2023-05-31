@@ -15,6 +15,8 @@ wget https://github.com/SUwonglab/PECA/archive/master.zip
 unzip master.zip
 cd PECA-master/
 bash install.sh
+```
+```
 bash PECA.sh sampleName genome
 ```
 ## Install:
