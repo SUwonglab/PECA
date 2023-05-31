@@ -61,19 +61,14 @@ PECA model uses prior information from ENCODE data. One can learn this prior inf
 
 Example: `sh PECA_withoutENCODE.sh /home/user/sampleName.txt hg19`
 Here /home/user/sampleName.txt is a txt file that contain sample names (contain one sample name per line). For example
-
+```
 ES_day0
-
 ES_day2
-
 ES_day4
-
 ES_day6
-
 ES_day10
-
 ES_day20
-
+```
 Under Input folder you should have ES_day0.txt, ES_day0.bam, and ES_day0.bam.bai, and the same for other samples. The reults of ES_day0 will be stored in ./Results__withoutENCODE/ES_day0/.
 
 ## Run PECA_compReg:
