@@ -22,8 +22,8 @@ Sample4  0  0  62
 Sample5  1  1  59
 Sample6  0  0  68
 ```
-### Without bam file
-For some study, like single cell multiome, generating bam file is not convinient. In this case, we can use predefined peaks and openness to run the model.
+### Without bam file (useful for sc-multiome)
+For some study, like single cell multiome, generating bam file is not convinient. In this case, we can use predefined peaks and openness to run the model. For each cluster, we can use the aggregated RNA-seq and ATAC-seq over cells from the same individual to generate pseudobulk gene expression and chromatin accessibility for each individual and run PECA. 
 ```
 sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 \
                                   --peak_file /full/path/to/peak.bed \
