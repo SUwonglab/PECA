@@ -39,7 +39,9 @@ Put the input files in folder named `./Input`. Three files: `${SampleName}.txt`,
 Note that all the three files should have same before-dot-file-name ${SampleName},only difference is after dot ".txt", ".bam" or ".bam.bai". Please see the example of RAd4 in the `./Input` directory.
 
 ### Step 2: Run 
-`sh PECA.sh ${SampleName} ${genome}`
+```
+sh PECA.sh ${SampleName} ${genome}
+```
 
 Example: `sh PECA.sh RAd4 mm9`
 
@@ -55,7 +57,7 @@ CRB_pval.txt is the Chromatin regulators' (CR) binding site matrix, each column 
 ## Run PECA without ENCODE data information
 PECA model uses prior information from ENCODE data. One can learn this prior information using their own data without using the ENCODE data if the number of paired samples are greater than 5.
 
-`sh PECA_withoutENCODE.sh FullPath_to_sampleNameFile ${genome}`
+```sh PECA_withoutENCODE.sh FullPath_to_sampleNameFile ${genome}```
 
 Example: `sh PECA_withoutENCODE.sh /home/user/sampleName.txt hg19`
 Here /home/user/sampleName.txt is a txt file that contain sample names (contain one sample name per line). For example
