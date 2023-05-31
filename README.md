@@ -10,17 +10,13 @@ Duren, Zhana, et al. "Modeling gene regulation from paired expression and chroma
 Duren, Zhana, et al. "Time course regulatory analysis based on paired expression and chromatin accessibility data." Genome research 30.4 (2020): 622-634.
 
 ## Quickly start:
-
+```
 wget https://github.com/SUwonglab/PECA/archive/master.zip
-
 unzip master.zip
-
 cd PECA-master/
-
 bash install.sh
-
 bash PECA.sh sampleName genome
-
+```
 ## Install:
 
 bash install.sh
