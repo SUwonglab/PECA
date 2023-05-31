@@ -5,7 +5,7 @@ If you have three or more samples in each group, you can leverage PECA for perfo
 sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 
 sh PECA_compare_withoutENCODE.sh Group1.txt Group2.txt All_sample_name.txt
 ```
-Here Group1.txt Group2.txt All_sample_name.txt are three one-column-text files containing sample names, which have to be consistent with the sample name given under the ./Input folder. For the input detail please see README.md.
+Here Group1.txt Group2.txt All_sample_name.txt are three one-column-text files containing sample names, which have to be consistent with the sample name given under the ./Input folder. For the input detail please see README.md. The results will be in folder ./Results_multiSample/CompareGroup_Group1_Group2/
 ## Additional Features and Customization
 ### Covariate control
 ```
