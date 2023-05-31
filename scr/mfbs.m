@@ -1,4 +1,4 @@
-function TF_binding=mfbs(TFName,Element_name,motifName,motifWeight,Match2)
+function [TF_binding,Motif_binding]=mfbs(TFName,Element_name,motifName,motifWeight,Match2)
     fileID = fopen('MotifTarget.txt');
     C = textscan(fileID,'%s %s %f32');
     fclose(fileID);
