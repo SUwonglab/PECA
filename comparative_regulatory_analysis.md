@@ -12,7 +12,7 @@ Here Group1.txt Group2.txt All_sample_name.txt are three one-column-text-files c
 sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 
 sh PECA_compare_withoutENCODE.sh Group1.txt Group2.txt All_sample_name.txt --Design_Matrix covariates_knock.txt
 ```
-Write all covariates into a design matrix (i.e. covariates_knock.txt). Here the design matrix (all element have to be **numbers**) is a **tab deliminated** text file as this example:
+Write all covariates into a design matrix (i.e. covariates_knock.txt). Here the design matrix (all element have to be **numbers**) is a **tab delimited** text file as this example:
 ```
 Name  Is_treatment  Is_male  Age
 Sample1  1  1  66
@@ -22,3 +22,12 @@ Sample4  0  0  62
 Sample5  1  1  59
 Sample6  0  0  68
 ```
+### without bam file
+For some study, like single cell multiome, generating bam file is to convinient. In this case, we can use predefined peak and openness to run the model.
+```
+sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 \
+                                  --peak_file /full/path/to/peak.bed \
+                                  --openness_file /full/path/to/openness.txt
+sh PECA_compare_withoutENCODE.sh Group1.txt Group2.txt All_sample_name.txt --Design_Matrix covariates_knock.txt
+```
+Here the peak is a three-columns bed file, and the openness is a tab delimited text file where the first three columns are (chr start end). The 4th column is the openness of the 1-st sample, 5-th column is the openness of 2-nd sample,.....
