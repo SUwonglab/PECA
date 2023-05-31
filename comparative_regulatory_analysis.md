@@ -48,7 +48,7 @@ rm motifFindingParameters.txt
 ```
 ## Figures and Tables
 ### Filtering networks
-User can filter networks (i.e. Group1_specific_network.txt ) based on fold-change in regulation score difference (column 7), Activity of TF-TG regulation (ranging from 0-1, column 8), and/or TF-TG correlation (column 3). 
+Condition specific network may contain many TF-TG pairs so that it may difficult to be visualized. Users can filter networks (i.e. Group1_specific_network.txt ) based on fold-change in regulation score difference (column 7), Activity of TF-TG regulation (ranging from 0-1, column 8), and/or TF-TG correlation (column 3). 
 ```
 cat ${Group1}_specific_network.txt |awk 'NR>1'|awk 'BEGIN{OFS="\t"}{if($7>1.1) print $0}'|awk 'BEGIN{OFS="\t"}{if($8>0.5) print $0}'|awk 'BEGIN{OFS="\t"}{if($3>0.2) print $0}' > ${Group1}_specific_network_filter.txt
 ```
