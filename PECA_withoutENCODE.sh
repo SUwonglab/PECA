@@ -96,13 +96,13 @@ do
 cd ./${input}/
 cat openness.bed |tr '_' '\t' > openness1.bed
 bedtools intersect -a openness1.bed -b openness_mean.bed -wa -wb -sorted|cut -f 1-4,8|sed 's/\t/_/1'|sed 's/\t/_/1'|sed 's/\t/_/1'|awk 'BEGIN{OFS="\t"}{ if ($2>a[$1] ) a[$1]=$2 }END{for (i in a) print i,a[i]}'|sed 's/_/\t/3' > openness2.bed
-mkdir Enrichment
-cat openness2.bed|awk 'BEGIN{OFS="\t"}{print $1,($2+0.5)/($3+0.5)}'|sort -k2nr|cut -f 1|tr '_' '\t'|awk 'BEGIN{OFS="\t"}{if ($3-$2 < 2000) print $0}'|head -10000 > ./Enrichment/region.bed
-sed "s/species/${speciesFull}/g" ../../scr/mf_collect.m > ./Enrichment/mf_collect.m 
-cd ./Enrichment/
-findMotifsGenome.pl region.bed ${genome} ./. -size given -mask -nomotif -mknown ../../../Data/all_motif_rmdup -preparsedDir ../../../Homer/ -p $numCore
-matlab -nodisplay -nosplash -nodesktop -r "mf_collect; exit"
-cd ../
+#mkdir Enrichment
+#cat openness2.bed|awk 'BEGIN{OFS="\t"}{print $1,($2+0.5)/($3+0.5)}'|sort -k2nr|cut -f 1|tr '_' '\t'|awk 'BEGIN{OFS="\t"}{if ($3-$2 < 2000) print $0}'|head -10000 > ./Enrichment/region.bed
+#sed "s/species/${speciesFull}/g" ../../scr/mf_collect.m > ./Enrichment/mf_collect.m 
+#cd ./Enrichment/
+#findMotifsGenome.pl region.bed ${genome} ./. -size given -mask -nomotif -mknown ../../../Data/all_motif_rmdup -preparsedDir ../../../Homer/ -p $numCore
+#matlab -nodisplay -nosplash -nodesktop -r "mf_collect; exit"
+#cd ../
 cp ../../scr/mfbs.m ./.
 sed "s/toreplace/${input}/g" ../../scr/PECA_network_${genome}.m > PECA_network.m
 matlab -nodisplay -nosplash -nodesktop -r "addpath('../$resultFolder/');PECA_network; exit"
