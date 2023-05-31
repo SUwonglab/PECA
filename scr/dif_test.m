@@ -1,4 +1,10 @@
-function [p1,p2]=dif_test(A,B)
+function [p1,p2,Res]=dif_test(A,B,Cov)
+if nargin > 2
+AB=[A,B];
+Res= AB-AB*Cov*pinv(Cov'*Cov)*Cov';
+A=Res(:,1:size(A,2));
+B=Res(:,1+size(A,2):end);
+end
 %p2 ttest2 pval
 ds1=size(A,2)-1;
 ds2=size(B,2)-1;
