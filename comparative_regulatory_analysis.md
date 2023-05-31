@@ -5,5 +5,5 @@ If you have three or more samples in each group, you can leverage PECA for perfo
 sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 
 sh PECA_compare_withoutENCODE.sh Group1.txt Group2.txt All_sample_name.txt
 ```
-Here 
+Here Group1.txt Group2.txt All_sample_name.txt are three text file contain sample names, which have to be consistent with the sample name given under the ./Input folder. For the input detail please see PEADME.md.
 ## Step by step
