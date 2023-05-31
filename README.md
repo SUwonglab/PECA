@@ -19,7 +19,9 @@ bash PECA.sh sampleName genome
 ```
 ## Install:
 
+```
 bash install.sh
+```
 
 ## Run PECA:
 
