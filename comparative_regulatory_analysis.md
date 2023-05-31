@@ -7,7 +7,7 @@ sh PECA_compare_withoutENCODE.sh Group1.txt Group2.txt All_sample_name.txt
 ```
 Here Group1.txt Group2.txt All_sample_name.txt are three one-column-text-files contain sample names, which have to be consistent with the sample name given under the ./Input folder. For the input detail please see README.md.
 ## Additional Features and Customization
-### covariate control
+### Covariate control
 ```
 sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 
 sh PECA_compare_withoutENCODE.sh Group1.txt Group2.txt All_sample_name.txt --Design_Matrix covariates_knock.txt
@@ -22,7 +22,7 @@ Sample4  0  0  62
 Sample5  1  1  59
 Sample6  0  0  68
 ```
-### without bam file
+### Without bam file
 For some study, like single cell multiome, generating bam file is to convinient. In this case, we can use predefined peak and openness to run the model.
 ```
 sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 \
