@@ -14,9 +14,11 @@ sh PECA_compare_withoutENCODE.sh Group1.txt Group2.txt All_sample_name.txt --Des
 ```
 Write all covariates into a design matrix (i.e. covariates_knock.txt). Here the design matrix is a tab deliminated text file as this example:
 Name  Is_treatment  Is_male  Age
+```
 Sample1  1  1  66
 Sample2  0  1  54
 Sample3  1  0  76
 Sample4  0  0  62
 Sample5  1  1  59
 Sample6  0  0  68
+```
