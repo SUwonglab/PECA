@@ -39,6 +39,7 @@ TF_binding=TF_binding(TF_filter,:);
 TFName=TFName(TF_filter);
 TFExp_median=TFExp_median(TF_filter);
 d0=500000;
+RE_TG_all=RE_TG;
 RE_TG(:,1)=filter_idx(RE_TG(:,1));
 RE_TG=RE_TG(RE_TG(:,1)>0,:);
 c=double(exp(-1*RE_TG(:,4)/d0).*max(0.2,RE_TG(:,3)));
@@ -51,6 +52,31 @@ Net2_mean=reshape(mean(BOH(1+size(Group1,1):end,:,:),1),length(TFName),length(ge
 NetPool_reshape=reshape(BOH,size(Group1,1)+size(Group2,1),length(TFName)*length(geneName))';
 Net1_mean_fold=Net1_mean./(max(Net1_mean)+0.0001);
 Net2_mean_fold=Net2_mean./(max(Net2_mean)+0.0001);
+%%%%TF activity
+c2=double(exp(-1*RE_TG_all(:,4)/d0).*max(0.2,RE_TG_all(:,3)));
+H2=sparse(RE_TG_all(:,1),RE_TG_all(:,2),c2,length(Symbol),length(Element_name));
+H2=H2./(sum(H2')'+0.01);
+Net_mean=TF_binding*H2';
+Net_mean=Net_mean./(sum(Net_mean,2)+0.01);
+TFA_O=TF_binding./(sum(TF_binding,2)+0.01)*Opn;
+TFA_E=Net_mean*Exp_all;
+if covariates == 1
+    p_TFA_O=dif_test(TFA_O(:,1:size(Group1,1)),TFA_O(:,1+size(Group1,1):end),Cov);
+    p_TFA_E=dif_test(TFA_E(:,1:size(Group1,1)),TFA_E(:,1+size(Group1,1):end),Cov);
+else
+    p_TFA_O=dif_test(TFA_O(:,1:size(Group1,1)),TFA_O(:,1+size(Group1,1):end));
+    p_TFA_E=dif_test(TFA_E(:,1:size(Group1,1)),TFA_E(:,1+size(Group1,1):end));
+end
+p_TFA_O=mafdr(p_TFA_O,'BHFDR',true);
+p_TFA_E=mafdr(p_TFA_E,'BHFDR',true);
+filename='TFName.txt';
+fid=fopen(filename,'wt');
+for i=1:size(TFName,1)
+	fprintf(fid, '%s\n',TFName{i,1});
+end
+fclose(fid);
+dlmwrite('TFA_O.txt',TFA_O,'\t')
+dlmwrite('TFA_E.txt',TFA_E,'\t')
 %%%Edge test
 if covariates == 1
     [p1,~,NetPool_norm]=dif_test(NetPool_reshape(:,1:size(Group1,1)),NetPool_reshape(:,1+size(Group1,1):end),Cov);
@@ -96,7 +122,7 @@ q2=-log10(q2);
 D1=(Net1>prctile(Net1(Net1>0),90)).*repmat(mean(ExpPool1(:,1:size(Group1,1)),2)>mean(ExpPool1(:,1+size(Group1,1):end),2),1,size(Net1,2));
 [a b]=find(D1>0);
 c=Net1(D1>0).*q1(a).*q2(b).*abs(R2(D1>0));
-Net1_specific=[TFName(a) geneName(b) num2cell(R2(D1>0)) num2cell(q1(a)) num2cell(q2(b)) num2cell(p_reshape(D1>0)) num2cell((Net1_mean(D1>0)+0.01)./(Net2_mean(D1>0)+0.01)) num2cell(Net1_mean_fold(D1>0))];
+Net1_specific=[TFName(a) geneName(b) num2cell(R2(D1>0)) num2cell(p_TFA_O(a)) num2cell(p_TFA_E(a)) num2cell(q1(a)) num2cell(q2(b)) num2cell(p_reshape(D1>0)) num2cell((Net1_mean(D1>0)+0.01)./(Net2_mean(D1>0)+0.01)) num2cell(Net1_mean_fold(D1>0))];
 net_filter=max(q1(a),p_reshape(D1>0))>1;
 d=R2(D1>0).*sign(mean(Exp(b,1:size(Group1,1)),2)-mean(Exp(b,1+size(Group1,1):end),2))>0;
 Net1_specific=Net1_specific(d.*net_filter>0,:);
@@ -112,7 +138,7 @@ Net1_specific_module=Net1_specific(d1(:,1).*d1(:,2)>0,:);
 D1=(Net2>prctile(Net2(Net2>0),90)).*repmat(mean(ExpPool1(:,1:size(Group1,1)),2)<mean(ExpPool1(:,1+size(Group1,1):end),2),1,size(Net1,2));
 [a b]=find(D1>0);
 c=Net2(D1>0).*q1(a).*q2(b).*abs(R2(D1>0));
-Net2_specific=[TFName(a) geneName(b) num2cell(R2(D1>0)) num2cell(q1(a)) num2cell(q2(b)) num2cell(p_reshape(D1>0)) num2cell((Net2_mean(D1>0)+1)./(Net1_mean(D1>0)+1)) num2cell(Net2_mean_fold(D1>0))];
+Net2_specific=[TFName(a) geneName(b) num2cell(R2(D1>0))  num2cell(p_TFA_O(a)) num2cell(p_TFA_E(a)) num2cell(q1(a)) num2cell(q2(b)) num2cell(p_reshape(D1>0)) num2cell((Net2_mean(D1>0)+1)./(Net1_mean(D1>0)+1)) num2cell(Net2_mean_fold(D1>0))];
 net_filter=max(q1(a),p_reshape(D1>0))>1;
 d=R2(D1>0).*sign(mean(Exp(b,1+size(Group1,1):end),2)-mean(Exp(b,1:size(Group1,1)),2))>0;
 Net2_specific=Net2_specific(d.*net_filter>0,:);
@@ -151,6 +177,8 @@ fid=fopen(filename,'wt');
 	fprintf(fid, '%s\t','TF');
 	fprintf(fid, '%s\t','TG');
 	fprintf(fid, '%s\t','corr');
+  fprintf(fid, '%s\t','pval_TFA_O');
+  fprintf(fid, '%s\t','pval_TFA_E');
 	fprintf(fid, '%s\t','-log10P_TF');
 	fprintf(fid, '%s\t','-log10P_TG');
 	fprintf(fid, '%s\t','-log10P_Regulation');
@@ -162,13 +190,15 @@ for i=1:size(Net1_specific,1)
 	fprintf(fid, '%s\t',Net1_specific{i,1});
 	fprintf(fid, '%s\t',Net1_specific{i,2});
 	fprintf(fid, '%g\t',Net1_specific{i,3});
-	fprintf(fid, '%g\t',Net1_specific{i,4});
-	fprintf(fid, '%g\t',Net1_specific{i,5});
+ 	fprintf(fid, '%g\t',Net1_specific{i,4});
+ 	fprintf(fid, '%g\t',Net1_specific{i,5});
 	fprintf(fid, '%g\t',Net1_specific{i,6});
 	fprintf(fid, '%g\t',Net1_specific{i,7});
 	fprintf(fid, '%g\t',Net1_specific{i,8});
-	fprintf(fid, '%g\n',Net1_specific{i,9});
-%	fprintf(fid, '%s\n',Net1_specific{i,10});
+	fprintf(fid, '%g\t',Net1_specific{i,9});
+	fprintf(fid, '%g\t',Net1_specific{i,10});
+	fprintf(fid, '%g\n',Net1_specific{i,11});
+%	fprintf(fid, '%s\n',Net1_specific{i,12});
 end
 fclose(fid);
 filename='Group2_specific_network.txt';
@@ -176,6 +206,8 @@ fid=fopen(filename,'wt');
 	fprintf(fid, '%s\t','TF');
 	fprintf(fid, '%s\t','TG');
 	fprintf(fid, '%s\t','corr');
+  fprintf(fid, '%s\t','pval_TFA_O');
+  fprintf(fid, '%s\t','pval_TFA_E');
 	fprintf(fid, '%s\t','-log10P_TF');
 	fprintf(fid, '%s\t','-log10P_TG');
 	fprintf(fid, '%s\t','-log10P_Regulation');
@@ -187,13 +219,15 @@ for i=1:size(Net2_specific,1)
 	fprintf(fid, '%s\t',Net2_specific{i,1});
 	fprintf(fid, '%s\t',Net2_specific{i,2});
 	fprintf(fid, '%g\t',Net2_specific{i,3});
-	fprintf(fid, '%g\t',Net2_specific{i,4});
-	fprintf(fid, '%g\t',Net2_specific{i,5});
+ 	fprintf(fid, '%g\t',Net2_specific{i,4});
+ 	fprintf(fid, '%g\t',Net2_specific{i,5});
 	fprintf(fid, '%g\t',Net2_specific{i,6});
 	fprintf(fid, '%g\t',Net2_specific{i,7});
 	fprintf(fid, '%g\t',Net2_specific{i,8});
-	fprintf(fid, '%g\n',Net2_specific{i,9});
-%	fprintf(fid, '%s\n',Net2_specific{i,10});
+	fprintf(fid, '%g\t',Net2_specific{i,9});
+	fprintf(fid, '%g\t',Net2_specific{i,10});
+	fprintf(fid, '%g\n',Net2_specific{i,11});
+%	fprintf(fid, '%s\n',Net2_specific{i,12});
 end
 fclose(fid);
 filename='Group1_specific_module.txt';
@@ -201,6 +235,8 @@ fid=fopen(filename,'wt');
 	fprintf(fid, '%s\t','TF');
 	fprintf(fid, '%s\t','TG');
 	fprintf(fid, '%s\t','corr');
+  fprintf(fid, '%s\t','pval_TFA_O');
+  fprintf(fid, '%s\t','pval_TFA_E');
 	fprintf(fid, '%s\t','-log10P_TF');
 	fprintf(fid, '%s\t','-log10P_TG');
 	fprintf(fid, '%s\t','-log10P_Regulation');
@@ -213,12 +249,14 @@ for i=1:size(Net1_specific_module,1)
 	fprintf(fid, '%s\t',Net1_specific_module{i,2});
 	fprintf(fid, '%g\t',Net1_specific_module{i,3});
 	fprintf(fid, '%g\t',Net1_specific_module{i,4});
-	fprintf(fid, '%g\t',Net1_specific_module{i,5});
+ 	fprintf(fid, '%g\t',Net1_specific_module{i,5});
 	fprintf(fid, '%g\t',Net1_specific_module{i,6});
 	fprintf(fid, '%g\t',Net1_specific_module{i,7});
 	fprintf(fid, '%g\t',Net1_specific_module{i,8});
-	fprintf(fid, '%g\n',Net1_specific_module{i,9});
-%	fprintf(fid, '%s\n',Net1_specific_module{i,10});
+	fprintf(fid, '%g\t',Net1_specific_module{i,9});
+	fprintf(fid, '%g\t',Net1_specific_module{i,10});
+	fprintf(fid, '%g\n',Net1_specific_module{i,11});
+%	fprintf(fid, '%s\n',Net1_specific_module{i,12});
 end
 fclose(fid);
 filename='Group2_specific_module.txt';
@@ -226,6 +264,8 @@ fid=fopen(filename,'wt');
 	fprintf(fid, '%s\t','TF');
 	fprintf(fid, '%s\t','TG');
 	fprintf(fid, '%s\t','corr');
+  fprintf(fid, '%s\t','pval_TFA_O');
+  fprintf(fid, '%s\t','pval_TFA_E');
 	fprintf(fid, '%s\t','-log10P_TF');
 	fprintf(fid, '%s\t','-log10P_TG');
 	fprintf(fid, '%s\t','-log10P_Regulation');
@@ -237,13 +277,15 @@ for i=1:size(Net2_specific_module,1)
 	fprintf(fid, '%s\t',Net2_specific_module{i,1});
 	fprintf(fid, '%s\t',Net2_specific_module{i,2});
 	fprintf(fid, '%g\t',Net2_specific_module{i,3});
-	fprintf(fid, '%g\t',Net2_specific_module{i,4});
-	fprintf(fid, '%g\t',Net2_specific_module{i,5});
+ 	fprintf(fid, '%g\t',Net2_specific_module{i,4});
+ 	fprintf(fid, '%g\t',Net2_specific_module{i,5});
 	fprintf(fid, '%g\t',Net2_specific_module{i,6});
 	fprintf(fid, '%g\t',Net2_specific_module{i,7});
 	fprintf(fid, '%g\t',Net2_specific_module{i,8});
-	fprintf(fid, '%g\n',Net2_specific_module{i,9});
-%	fprintf(fid, '%s\n',Net2_specific_module{i,10});
+	fprintf(fid, '%g\t',Net2_specific_module{i,9});
+	fprintf(fid, '%g\t',Net2_specific_module{i,10});
+	fprintf(fid, '%g\n',Net2_specific_module{i,11});
+%	fprintf(fid, '%s\n',Net2_specific_module{i,12});
 end
 fclose(fid);
 filename='Group1_Group2_common_network.txt';
@@ -289,6 +331,8 @@ fid=fopen(filename,'wt');
 	fprintf(fid, '%s\t','TF');
 	fprintf(fid, '%s\t','TG');
 	fprintf(fid, '%s\t','corr');
+  fprintf(fid, '%s\t','pval_TFA_O');
+  fprintf(fid, '%s\t','pval_TFA_E');
 	fprintf(fid, '%s\t','-log10P_TF');
 	fprintf(fid, '%s\t','-log10P_TG');
 	fprintf(fid, '%s\t','-log10P_Regulation');
@@ -300,13 +344,15 @@ for i=1:size(Net1_TFspecific,1)
 	fprintf(fid, '%s\t',Net1_TFspecific{i,1});
 	fprintf(fid, '%s\t',Net1_TFspecific{i,2});
 	fprintf(fid, '%g\t',Net1_TFspecific{i,3});
-	fprintf(fid, '%g\t',Net1_TFspecific{i,4});
-	fprintf(fid, '%g\t',Net1_TFspecific{i,5});
+  fprintf(fid, '%g\t',Net1_TFspecific{i,4});
+  fprintf(fid, '%g\t',Net1_TFspecific{i,5});
 	fprintf(fid, '%g\t',Net1_TFspecific{i,6});
 	fprintf(fid, '%g\t',Net1_TFspecific{i,7});
 	fprintf(fid, '%g\t',Net1_TFspecific{i,8});
-	fprintf(fid, '%g\n',Net1_TFspecific{i,9});
-%	fprintf(fid, '%s\n',Net1_TFspecific{i,10});
+	fprintf(fid, '%g\t',Net1_TFspecific{i,9});
+	fprintf(fid, '%g\t',Net1_TFspecific{i,10});
+	fprintf(fid, '%g\n',Net1_TFspecific{i,11});
+%	fprintf(fid, '%s\n',Net1_TFspecific{i,12});
 end
 fclose(fid);
 filename='Group2_specific_TFnetwork.txt';
@@ -315,6 +361,8 @@ fid=fopen(filename,'wt');
 	fprintf(fid, '%s\t','TF');
 	fprintf(fid, '%s\t','TG');
 	fprintf(fid, '%s\t','corr');
+  fprintf(fid, '%s\t','pval_TFA_O');
+  fprintf(fid, '%s\t','pval_TFA_E');
 	fprintf(fid, '%s\t','-log10P_TF');
 	fprintf(fid, '%s\t','-log10P_TG');
 	fprintf(fid, '%s\t','-log10P_Regulation');
@@ -326,12 +374,14 @@ for i=1:size(Net2_TFspecific,1)
 	fprintf(fid, '%s\t',Net2_TFspecific{i,1});
 	fprintf(fid, '%s\t',Net2_TFspecific{i,2});
 	fprintf(fid, '%g\t',Net2_TFspecific{i,3});
-	fprintf(fid, '%g\t',Net2_TFspecific{i,4});
-	fprintf(fid, '%g\t',Net2_TFspecific{i,5});
+  fprintf(fid, '%g\t',Net2_TFspecific{i,4});
+  fprintf(fid, '%g\t',Net2_TFspecific{i,5});
 	fprintf(fid, '%g\t',Net2_TFspecific{i,6});
 	fprintf(fid, '%g\t',Net2_TFspecific{i,7});
 	fprintf(fid, '%g\t',Net2_TFspecific{i,8});
-	fprintf(fid, '%g\n',Net2_TFspecific{i,9});
-%	fprintf(fid, '%s\n',Net2_TFspecific{i,10});
+	fprintf(fid, '%g\t',Net2_TFspecific{i,9});
+	fprintf(fid, '%g\t',Net2_TFspecific{i,10});
+	fprintf(fid, '%g\n',Net2_TFspecific{i,11});
+%	fprintf(fid, '%s\n',Net2_TFspecific{i,12});
 end
 fclose(fid);
