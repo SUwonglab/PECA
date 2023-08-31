@@ -48,9 +48,9 @@ rm motifFindingParameters.txt
 ```
 ## Figures and Tables
 ### Filtering networks
-The condition-specific network may contain many TF-TG pairs so it may difficult to be visualized. Users can filter networks (i.e. Group1_specific_network.txt ) based on fold-change in regulation score difference (column 7), Activity of TF-TG regulation (ranging from 0-1, column 8), and/or TF-TG correlation (column 3). 
+The condition-specific network may contain many TF-TG pairs so it may difficult to be visualized. Users can filter networks (i.e. Group1_specific_network.txt ) based on fold-change in regulation score difference (column 9), Activity of TF-TG regulation (ranging from 0-1, column 10), and/or TF-TG correlation (column 3). 
 ```
-cat ${Group1}_specific_network.txt |awk 'NR>1'|awk 'BEGIN{OFS="\t"}{if($7>1.1) print $0}'|awk 'BEGIN{OFS="\t"}{if($8>0.5) print $0}'|awk 'BEGIN{OFS="\t"}{if($3>0.2) print $0}' > ${Group1}_specific_network_filter.txt
+cat ${Group1}_specific_network.txt |awk 'NR>1'|awk 'BEGIN{OFS="\t"}{if($9>1.1) print $0}'|awk 'BEGIN{OFS="\t"}{if($10>0.5) print $0}'|awk 'BEGIN{OFS="\t"}{if($3>0.2) print $0}' > ${Group1}_specific_network_filter.txt
 ```
 The same filtering could be done for Group1_specific_TFnetwork.txt and Group1_specific_module.txt.
 ### TF-TG network by Cytoscape
