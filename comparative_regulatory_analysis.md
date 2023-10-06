@@ -35,7 +35,7 @@ Here the peak is a three-column bed file, and the openness is a tab-delimited te
 ```
 sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 \
                                   --peak_file /full/path/to/peak.bed \
-                                  --openness_file /full/path/to/openness.txt
+                                  --openness_file /full/path/to/openness.txt \
                                   --motif_file /full/path/to/MotifTarget.txt
 sh PECA_compare_withoutENCODE.sh Group1.txt Group2.txt All_sample_name.txt --Design_Matrix covariates_knock.txt
 ```
