@@ -97,7 +97,7 @@ for i=1:size(TFName,1)
 
 filename='TGName.txt';
  fid=fopen(filename,'wt');
-for i=1:size(geneName)
+for i=1:size(geneName,1)
  fprintf(fid, '%s\n',geneName{i,1});
  end
  fclose(fid);
@@ -150,3 +150,4 @@ for i=1:size(Net,1)
 	fprintf(fid, '%s\n',Net{i,4});
 end
 fclose(fid);
+
