@@ -1,9 +1,11 @@
 
 ## Enviroment setup and install
 Install MACS2 if not available.
-
-create conda enviroment
+allocate 128GB resource interactve job on quartz (replace your slurm-account-name)
 ```
+srun -p debug -A slurm-account-name --time=01:00:00 --mem=128GB --pty bash
+```
+create conda enviroment
 ml conda
 conda create -n PECA
 ```
@@ -35,6 +37,10 @@ test PECA
 sh PECA.sh RAd4 mm10
 ```
 ## run PECA for multiple samples
+
+```
+srun -p debug -A slurm-account-name --time=01:00:00 --mem=128GB --pty bash
+```
 Input
 textfile
 
