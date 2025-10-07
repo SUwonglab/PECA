@@ -47,4 +47,5 @@ copy run.sh to under ./PECA-master/ and edit the folder name.
 sh run.sh
 ```
 
+follows: https://github.com/SUwonglab/PECA/blob/master/comparative_regulatory_analysis.md
 
