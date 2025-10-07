@@ -1,7 +1,7 @@
 
 ## Enviroment setup and install
 Install MACS2 if not available.
-allocate 128GB resource interactve job on quartz (replace your slurm-account-name)
+allocate 64GB resource interactve job on quartz (replace your slurm-account-name)
 ```
 srun -p debug -A slurm-account-name --time=01:00:00 --mem=64GB --pty bash
 ```
