@@ -40,7 +40,9 @@ sh PECA.sh RAd4 mm10
 ## run PECA for multiple samples
 
 dowmload example data, copy files under Input folder into PECA-master/Input/
-cp run.sh to under ./PECA-master/ and edit the folder name.
+
+
+copy run.sh to under ./PECA-master/ and edit the folder name.
 ```
 sh run.sh
 ```
