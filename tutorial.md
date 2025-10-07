@@ -6,6 +6,7 @@ allocate 128GB resource interactve job on quartz (replace your slurm-account-nam
 srun -p debug -A slurm-account-name --time=01:00:00 --mem=128GB --pty bash
 ```
 create conda enviroment
+```
 ml conda
 conda create -n PECA
 ```
