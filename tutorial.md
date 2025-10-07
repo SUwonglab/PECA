@@ -1,6 +1,7 @@
 
 ## Enviroment setup and install
-Install MACS2 if not available
+Install MACS2 if not available.
+
 create conda enviroment
 ```
 ml conda
