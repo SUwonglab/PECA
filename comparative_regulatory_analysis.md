@@ -1,5 +1,28 @@
-# Comparative gene regulatory analysis via PECA
-If you have three or more samples in each group, you can leverage PECA for performing comparative regulatory analysis. PECA is a powerful tool designed for analyzing bulk or pseudo-bulk RNA-seq and ATAC-seq data. It generates condition-specific transcriptional regulatory networks and identifies condition-specific driver regulators. Additionally, PECA allows for controlling covariates such as race, age, sex, and treatment to obtain more accurate results
+# Multiple samples and Comparative gene regulatory analysis via PECA
+If you have three or more samples in each group, you can leverage PECA for performing GRN analysis and comparative regulatory analysis. PECA is a powerful tool designed for analyzing bulk or pseudo-bulk RNA-seq and ATAC-seq data. It generates condition-specific transcriptional regulatory networks and identifies condition-specific driver regulators. Additionally, PECA allows for controlling covariates such as race, age, sex, and treatment to obtain more accurate results.
+
+## Install MACS2 if not
+create conda enviroment
+```
+ml conda
+conda create -n PECA
+```
+actiavte conda enviroment
+```
+conda activate PECA
+```
+install macs2 using bioconda
+```
+conda install -c bioconda macs2
+```
+check all requirements
+```
+ml matlab
+ml homer
+ml samtools
+ml bedtools
+macs2 --help
+```
 ## Simple run
 ```
 sh PECA_multi.sh /full/path/to/All_sample_name.txt hg19 
